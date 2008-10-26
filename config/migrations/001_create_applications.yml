@@ -1,0 +1,14 @@
+UP:
+  create_table:
+    applications:
+      name:
+        type: string
+        length: 255
+      slug:
+        type: string
+        length: 255
+      ticket_id:
+        type: integer
+        length: 11
+DOWN:
+  drop_table: applications

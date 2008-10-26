@@ -1,0 +1,28 @@
+UP:
+  create_table:
+    tickets:
+      name:
+        type: string
+        length: 255
+      slug:
+        type: string
+        length: 255
+      problem:
+        type: text
+      is_complete:
+        type: boolean
+        length: 1
+      application_id:
+        type: integer
+        length: 11
+      release_id:
+        type: integer
+        length: 11
+      queue_id:
+        type: integer
+        length: 11
+      user_id:
+        type: integer
+        length: 11
+DOWN:
+  drop_table: tickets
