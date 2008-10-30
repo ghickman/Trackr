@@ -1,8 +1,0 @@
-UP:
-  create_table:
-    releases:
-      date_of: [datetime]
-      slug: [string, 255]
-      application_id: [11]
-DOWN:
-  drop_table: releases

@@ -1,8 +1,0 @@
-UP:
-  create_table:
-    groups:
-      name: [string, 255]
-      slug: [string, 255]
-      queue_id: [11]
-DOWN:
-  drop_tables: groups

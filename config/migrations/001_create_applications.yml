@@ -1,9 +1,0 @@
-UP:
-  create_table:
-    applications:
-      name: [string, 255]
-      slug: [string, 255]
-      release_id: [11]
-      ticket_id: [11]
-DOWN:
-  drop_table: applications
