@@ -1,0 +1,42 @@
+UP:
+    create_table:
+        applications:
+            name: [string, 255]
+            slug: [string, 255]
+        applications_releases:
+            no_id: true
+            application_id: [11]
+            release_id: [11]
+        application_tickets:
+            no_id: true
+            application_id: [11]
+            ticket_id: [11]
+        groups:
+            name: [string, 255]
+            slug: [string, 255]
+            queue_id: [11]
+        queues:
+            name: [string, 255]
+            slug: [string, 255]
+            is_first_line: [boolean]
+        releases:
+            date_of: [datetime]
+            slug: [string, 255]
+        tickets:
+            name: [string, 255]
+            slug: [string, 255]
+            problem: [text]
+            is_complete: [boolean]
+            release_id: [11]
+            queue_id: [11]
+        tickets_users:
+            no_id: true
+            ticket_id: [11]
+            user_id: [11]
+        users:
+            slug: [string, 255]
+            username:[string, 255]
+            password: [string, 40]
+            group_id: [11]
+DOWN:
+  drop_table: [applications, applications_releases, applications_tickets groups, queues, releases, tickets, tickets_users, users]
