@@ -16,7 +16,9 @@ class User extends AppModel {
 			'rule' => 'alphaNumeric',
 			'message' => 'Usernames must only contain letters and numbers.'
 		),
-		'password' = array()
+		'password' = array(
+			
+		)
 	);
 }
 ?>
