@@ -1,13 +1,8 @@
 UP:
   create_table:
     releases:
-      date_of:
-        type: datetime
-      slug:
-        type: string
-        length: 255
-      ticket_id:
-        type: integer
-        length: 11
+      date_of: [datetime]
+      slug: [string, 255]
+      application_id: [11]
 DOWN:
   drop_table: releases

@@ -1,20 +1,10 @@
 UP:
   create_table:
     users:
-      slug:
-        type: string
-        length: 255
-      username:
-        type: string
-        length: 255
-      password:
-        type: string
-        length: 40
-      group_id:
-        type: integer
-        length: 11
-      ticket_id:
-        type: integer
-        length: 11
+      slug: [string, 255]
+      username:[string, 255]
+      password: [string, 40]
+      group_id: [11]
+      ticket_id: [11]
 DOWN:
   drop_table: users

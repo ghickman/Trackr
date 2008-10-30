@@ -1,14 +1,8 @@
 UP:
   create_table:
     queues:
-      name: 
-        type: string
-        length: 255
-      slug:
-        type: string
-        length: 255
-      is_first_line: 
-        type: boolean
-        length: 1
+      name: [string, 255]
+      slug: [string, 255]
+      is_first_line: [boolean]
 DOWN:
   drop_table: queues

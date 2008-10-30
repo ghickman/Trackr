@@ -1,28 +1,13 @@
 UP:
   create_table:
     tickets:
-      name:
-        type: string
-        length: 255
-      slug:
-        type: string
-        length: 255
-      problem:
-        type: text
-      is_complete:
-        type: boolean
-        length: 1
-      application_id:
-        type: integer
-        length: 11
-      release_id:
-        type: integer
-        length: 11
-      queue_id:
-        type: integer
-        length: 11
-      user_id:
-        type: integer
-        length: 11
+      name: [string, 255]
+      slug: [string, 255]
+      problem: [text]
+      is_complete: [boolean]
+      application_id: [11]
+      release_id: [11]
+      queue_id: [11]
+      user_id: [11]
 DOWN:
   drop_table: tickets

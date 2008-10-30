@@ -1,14 +1,9 @@
 UP:
   create_table:
     applications:
-      name:
-        type: string
-        length: 255
-      slug:
-        type: string
-        length: 255
-      ticket_id:
-        type: integer
-        length: 11
+      name: [string, 255]
+      slug: [string, 255]
+      release_id: [11]
+      ticket_id: [11]
 DOWN:
   drop_table: applications

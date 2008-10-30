@@ -1,14 +1,8 @@
 UP:
   create_table:
     groups:
-      name:
-        type: string
-        length: 255
-      slug:
-        type: string
-        length: 255
-      queue_id:  
-        type: integer
-        length: 11
+      name: [string, 255]
+      slug: [string, 255]
+      queue_id: [11]
 DOWN:
   drop_tables: groups
