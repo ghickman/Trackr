@@ -1,0 +1,11 @@
+# raw SQL
+# ALTER TABLE `tickets` CHANGE `problem` `problem` TEXT
+UP:
+  alter_field:
+    tickets:
+      problem: string
+DOWN:
+  alter_field:
+    tickets:
+        problem:
+          type: text
