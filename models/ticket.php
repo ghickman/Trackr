@@ -9,7 +9,7 @@ class Ticket extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Application' => array(
 			'className' => 'Application',
-			'joinTable' => 'application_tickets',
+			'joinTable' => 'applications_tickets',
 			'foreignKey' => 'ticket_id',
 			'associationForeignKey' => 'application_id'
 		),

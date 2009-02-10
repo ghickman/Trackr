@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* User Test cases generated on: 2008-10-30 15:10:30 : 1225381170*/
+/* User Test cases generated on: 2008-11-05 11:11:56 : 1225885076*/
 App::import('Model', 'User');
 
 class UserTestCase extends CakeTestCase {
@@ -27,8 +27,8 @@ class UserTestCase extends CakeTestCase {
 			'username'  => 'Lorem ipsum dolor sit amet',
 			'password'  => 'Lorem ipsum dolor sit amet',
 			'group_id'  => 'Lorem ips',
-			'created'  => '2008-10-30 15:39:30',
-			'modified'  => '2008-10-30 15:39:30'
+			'created'  => '2008-11-05 11:37:54',
+			'modified'  => '2008-11-05 11:37:54'
 			));
 		$this->assertEqual($results, $expected);
 	}

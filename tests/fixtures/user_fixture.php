@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* User Fixture generated on: 2008-10-30 15:10:30 : 1225381170*/
+/* User Fixture generated on: 2008-11-05 11:11:54 : 1225885074*/
 
 class UserFixture extends CakeTestFixture {
 	var $name = 'User';
@@ -21,8 +21,8 @@ class UserFixture extends CakeTestFixture {
 			'username'  => 'Lorem ipsum dolor sit amet',
 			'password'  => 'Lorem ipsum dolor sit amet',
 			'group_id'  => 'Lorem ips',
-			'created'  => '2008-10-30 15:39:30',
-			'modified'  => '2008-10-30 15:39:30'
+			'created'  => '2008-11-05 11:37:54',
+			'modified'  => '2008-11-05 11:37:54'
 			));
 }
 ?>
