@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Release Fixture generated on: 2008-10-30 15:10:43 : 1225381363*/
+/* Release Fixture generated on: 2009-02-11 09:02:48 : 1234342848*/
 
 class ReleaseFixture extends CakeTestFixture {
 	var $name = 'Release';
@@ -15,10 +15,10 @@ class ReleaseFixture extends CakeTestFixture {
 			);
 	var $records = array(array(
 			'id'  => 1,
-			'date_of'  => '2008-10-30 15:42:43',
+			'date_of'  => '2009-02-11 09:00:48',
 			'slug'  => 'Lorem ipsum dolor sit amet',
-			'created'  => '2008-10-30 15:42:43',
-			'modified'  => '2008-10-30 15:42:43'
+			'created'  => '2009-02-11 09:00:48',
+			'modified'  => '2009-02-11 09:00:48'
 			));
 }
 ?>

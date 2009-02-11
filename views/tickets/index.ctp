@@ -14,6 +14,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('problem');?></th>
 	<th><?php echo $paginator->sort('is_complete');?></th>
 	<th><?php echo $paginator->sort('release_id');?></th>
+	<th><?php echo $paginator->sort('status_id');?></th>
 	<th><?php echo $paginator->sort('queue_id');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
 	<th><?php echo $paginator->sort('modified');?></th>
@@ -44,10 +45,13 @@ foreach ($tickets as $ticket):
 			<?php echo $ticket['Ticket']['is_complete']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($ticket['Release']['id'], array('controller'=> 'releases', 'action'=>'view', $ticket['Release']['id'])); ?>
+			<?php echo $ticket['Ticket']['release_id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($ticket['Queue']['name'], array('controller'=> 'queues', 'action'=>'view', $ticket['Queue']['id'])); ?>
+			<?php echo $ticket['Ticket']['status_id']; ?>
+		</td>
+		<td>
+			<?php echo $ticket['Ticket']['queue_id']; ?>
 		</td>
 		<td>
 			<?php echo $ticket['Ticket']['created']; ?>
@@ -72,13 +76,5 @@ foreach ($tickets as $ticket):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Ticket', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Releases', true), array('controller'=> 'releases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Release', true), array('controller'=> 'releases', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Queues', true), array('controller'=> 'queues', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Queue', true), array('controller'=> 'queues', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Applications', true), array('controller'=> 'applications', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Application', true), array('controller'=> 'applications', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* GroupsController Test cases generated on: 2008-11-04 16:11:24 : 1225816104*/
+/* GroupsController Test cases generated on: 2009-02-11 09:02:28 : 1234343128*/
 App::import('Controller', 'Groups');
 
 class TestGroups extends GroupsController {

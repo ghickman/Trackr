@@ -35,7 +35,7 @@ foreach ($groups as $group):
 			<?php echo $group['Group']['slug']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($group['Queue']['name'], array('controller'=> 'queues', 'action'=>'view', $group['Queue']['id'])); ?>
+			<?php echo $group['Group']['queue_id']; ?>
 		</td>
 		<td>
 			<?php echo $group['Group']['created']; ?>
@@ -60,9 +60,5 @@ foreach ($groups as $group):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Group', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Queues', true), array('controller'=> 'queues', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Queue', true), array('controller'=> 'queues', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Group Fixture generated on: 2008-10-30 15:10:04 : 1225381264*/
+/* Group Fixture generated on: 2009-02-11 08:02:25 : 1234342585*/
 
 class GroupFixture extends CakeTestFixture {
 	var $name = 'Group';
@@ -19,8 +19,8 @@ class GroupFixture extends CakeTestFixture {
 			'name'  => 'Lorem ipsum dolor sit amet',
 			'slug'  => 'Lorem ipsum dolor sit amet',
 			'queue_id'  => 'Lorem ips',
-			'created'  => '2008-10-30 15:41:04',
-			'modified'  => '2008-10-30 15:41:04'
+			'created'  => '2009-02-11 08:56:25',
+			'modified'  => '2009-02-11 08:56:25'
 			));
 }
 ?>

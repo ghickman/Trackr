@@ -56,7 +56,5 @@ foreach ($applications as $application):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Application', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Releases', true), array('controller'=> 'releases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Release', true), array('controller'=> 'releases', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

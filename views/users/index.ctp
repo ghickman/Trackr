@@ -39,7 +39,7 @@ foreach ($users as $user):
 			<?php echo $user['User']['password']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($user['Group']['name'], array('controller'=> 'groups', 'action'=>'view', $user['Group']['id'])); ?>
+			<?php echo $user['User']['group_id']; ?>
 		</td>
 		<td>
 			<?php echo $user['User']['created']; ?>
@@ -64,9 +64,5 @@ foreach ($users as $user):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New User', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Groups', true), array('controller'=> 'groups', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Group', true), array('controller'=> 'groups', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Tickets', true), array('controller'=> 'tickets', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Ticket', true), array('controller'=> 'tickets', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

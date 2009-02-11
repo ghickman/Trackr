@@ -1,6 +1,8 @@
 <?php
 class ApplicationsController extends AppController {
+
 	var $name = 'Applications';
+	var $helpers = array('Html', 'Form');
 
 	function index() {
 		$this->Application->recursive = 0;
@@ -26,7 +28,8 @@ class ApplicationsController extends AppController {
 			}
 		}
 		$releases = $this->Application->Release->find('list');
-		$this->set(compact('releases'));
+		$tickets = $this->Application->Ticket->find('list');
+		$this->set(compact('releases', 'tickets'));
 	}
 
 	function edit($id = null) {
@@ -46,7 +49,8 @@ class ApplicationsController extends AppController {
 			$this->data = $this->Application->read(null, $id);
 		}
 		$releases = $this->Application->Release->find('list');
-		$this->set(compact('releases'));
+		$tickets = $this->Application->Ticket->find('list');
+		$this->set(compact('releases','tickets'));
 	}
 
 	function delete($id = null) {

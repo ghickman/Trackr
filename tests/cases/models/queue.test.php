@@ -1,14 +1,13 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Queue Test cases generated on: 2008-10-30 15:10:34 : 1225381294*/
+/* Queue Test cases generated on: 2009-02-11 08:02:53 : 1234342793*/
 App::import('Model', 'Queue');
 
 class QueueTestCase extends CakeTestCase {
 	var $Queue = null;
 	var $fixtures = array('app.queue', 'app.group', 'app.ticket');
 
-	function start() {
-		parent::start();
+	function startTest() {
 		$this->Queue =& ClassRegistry::init('Queue');
 	}
 
@@ -26,8 +25,8 @@ class QueueTestCase extends CakeTestCase {
 			'name'  => 'Lorem ipsum dolor sit amet',
 			'slug'  => 'Lorem ipsum dolor sit amet',
 			'is_first_line'  => 1,
-			'created'  => '2008-10-30 15:41:34',
-			'modified'  => '2008-10-30 15:41:34'
+			'created'  => '2009-02-11 08:59:53',
+			'modified'  => '2009-02-11 08:59:53'
 			));
 		$this->assertEqual($results, $expected);
 	}

@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Queue Fixture generated on: 2008-10-30 15:10:34 : 1225381294*/
+/* Queue Fixture generated on: 2009-02-11 08:02:53 : 1234342793*/
 
 class QueueFixture extends CakeTestFixture {
 	var $name = 'Queue';
@@ -19,8 +19,8 @@ class QueueFixture extends CakeTestFixture {
 			'name'  => 'Lorem ipsum dolor sit amet',
 			'slug'  => 'Lorem ipsum dolor sit amet',
 			'is_first_line'  => 1,
-			'created'  => '2008-10-30 15:41:34',
-			'modified'  => '2008-10-30 15:41:34'
+			'created'  => '2009-02-11 08:59:53',
+			'modified'  => '2009-02-11 08:59:53'
 			));
 }
 ?>

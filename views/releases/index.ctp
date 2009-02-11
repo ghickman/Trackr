@@ -56,9 +56,5 @@ foreach ($releases as $release):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Release', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Tickets', true), array('controller'=> 'tickets', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Ticket', true), array('controller'=> 'tickets', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Applications', true), array('controller'=> 'applications', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Application', true), array('controller'=> 'applications', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

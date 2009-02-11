@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* UsersController Test cases generated on: 2008-11-04 16:11:05 : 1225816145*/
+/* UsersController Test cases generated on: 2009-02-11 09:02:20 : 1234343240*/
 App::import('Controller', 'Users');
 
 class TestUsers extends UsersController {

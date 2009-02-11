@@ -1,14 +1,13 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Application Test cases generated on: 2008-10-30 15:10:07 : 1225381207*/
+/* Application Test cases generated on: 2009-02-11 08:02:35 : 1234342475*/
 App::import('Model', 'Application');
 
 class ApplicationTestCase extends CakeTestCase {
 	var $Application = null;
 	var $fixtures = array('app.application');
 
-	function start() {
-		parent::start();
+	function startTest() {
 		$this->Application =& ClassRegistry::init('Application');
 	}
 
@@ -25,8 +24,8 @@ class ApplicationTestCase extends CakeTestCase {
 			'id'  => 1,
 			'name'  => 'Lorem ipsum dolor sit amet',
 			'slug'  => 'Lorem ipsum dolor sit amet',
-			'created'  => '2008-10-30 15:40:05',
-			'modified'  => '2008-10-30 15:40:05'
+			'created'  => '2009-02-11 08:54:35',
+			'modified'  => '2009-02-11 08:54:35'
 			));
 		$this->assertEqual($results, $expected);
 	}

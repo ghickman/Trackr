@@ -30,8 +30,9 @@ class TicketsController extends AppController {
 		$applications = $this->Ticket->Application->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list');
+		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('applications', 'users', 'releases', 'queues'));
+		$this->set(compact('applications', 'users', 'releases', 'statuses', 'queues'));
 	}
 
 	function edit($id = null) {
@@ -41,7 +42,7 @@ class TicketsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->Ticket->save($this->data)) {
-				$this->Session->setFlash(__('The Ticket has been saved', true));
+				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The Ticket could not be saved. Please, try again.', true));
@@ -52,9 +53,10 @@ class TicketsController extends AppController {
 		}
 		$applications = $this->Ticket->Application->find('list');
 		$users = $this->Ticket->User->find('list');
-		$releases = $this->Ticket->Release->find('list');
+		$releases = $this->Ticket->Release->find('list', array('fields'=>'Release.date_of'));
+		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('applications','users','releases','queues'));
+		$this->set(compact('applications','users','releases','statuses','queues'));
 	}
 
 	function delete($id = null) {
