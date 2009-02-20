@@ -55,9 +55,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Ticket', true), array('action'=>'edit', $ticket['Ticket']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Ticket', true), array('action'=>'delete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $ticket['Ticket']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Tickets', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Ticket', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('Edit Ticket', true), array('action'=>'edit', $ticket['Ticket']['id'])); ?></li>
+		<li><?php echo $html->link(__('Delete Ticket', true), array('action'=>'delete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $ticket['Ticket']['id'])); ?></li>
+		<li><?php echo $html->link(__('List Tickets', true), array('action'=>'index')); ?></li>
+		<li><?php echo $html->link(__('New Ticket', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

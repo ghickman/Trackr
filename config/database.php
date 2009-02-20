@@ -7,7 +7,17 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'Jil)(23af9',
-		'database' => 'tellannDev',
+		'database' => 'tellannDev'
 	);
+	
+    var $test = array(
+    	'driver' => 'mysql',
+    	'persistent' => false,
+    	'host' => 'localhost',
+    	'login' => 'root',
+    	'password' => 'Jil)(23af9',
+    	'database' => 'tellannTest',
+    	'prefix' => ''
+    );
 }
 ?>

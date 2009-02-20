@@ -1,11 +1,11 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Ticket Test cases generated on: 2009-02-11 09:02:25 : 1234342885*/
+/* Ticket Test cases generated on: 2009-02-19 11:02:11 : 1235042111*/
 App::import('Model', 'Ticket');
 
 class TicketTestCase extends CakeTestCase {
 	var $Ticket = null;
-	var $fixtures = array('app.ticket', 'app.release', 'app.status', 'app.queue', 'app.comment');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Ticket =& ClassRegistry::init('Ticket');
@@ -29,8 +29,8 @@ class TicketTestCase extends CakeTestCase {
 			'release_id'  => 'Lorem ips',
 			'status_id'  => 'Lorem ips',
 			'queue_id'  => 'Lorem ips',
-			'created'  => '2009-02-11 09:01:25',
-			'modified'  => '2009-02-11 09:01:25'
+			'created'  => '2009-02-19 11:15:09',
+			'modified'  => '2009-02-19 11:15:09'
 			));
 		$this->assertEqual($results, $expected);
 	}

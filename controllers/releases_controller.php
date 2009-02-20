@@ -1,8 +1,10 @@
 <?php
 class ReleasesController extends AppController {
-
 	var $name = 'Releases';
-	var $helpers = array('Html', 'Form');
+    
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
 
 	function index() {
 		$this->Release->recursive = 0;
@@ -11,7 +13,7 @@ class ReleasesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Release.', true));
+			$this->Session->setFlash('Invalid Release.');
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('release', $this->Release->read(null, $id));
@@ -21,10 +23,10 @@ class ReleasesController extends AppController {
 		if (!empty($this->data)) {
 			$this->Release->create();
 			if ($this->Release->save($this->data)) {
-				$this->Session->setFlash(__('The Release has been saved', true));
+				$this->Session->setFlash('The Release has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Release could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Release could not be saved. Please, try again.');
 			}
 		}
 		$applications = $this->Release->Application->find('list');
@@ -33,15 +35,15 @@ class ReleasesController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Release', true));
+			$this->Session->setFlash('Invalid Release');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Release->save($this->data)) {
-				$this->Session->setFlash(__('The Release has been saved', true));
+				$this->Session->setFlash('The Release has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Release could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Release could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -53,11 +55,11 @@ class ReleasesController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Release', true));
+			$this->Session->setFlash('Invalid id for Release');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Release->del($id)) {
-			$this->Session->setFlash(__('Release deleted', true));
+			$this->Session->setFlash('Release deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}

@@ -1,8 +1,10 @@
 <?php
 class QueuesController extends AppController {
-
 	var $name = 'Queues';
-	var $helpers = array('Html', 'Form');
+	
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
 
 	function index() {
 		$this->Queue->recursive = 0;
@@ -11,7 +13,7 @@ class QueuesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Queue.', true));
+			$this->Session->setFlash('Invalid Queue.');
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('queue', $this->Queue->read(null, $id));
@@ -21,25 +23,25 @@ class QueuesController extends AppController {
 		if (!empty($this->data)) {
 			$this->Queue->create();
 			if ($this->Queue->save($this->data)) {
-				$this->Session->setFlash(__('The Queue has been saved', true));
+				$this->Session->setFlash('The Queue has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Queue could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Queue could not be saved. Please, try again.');
 			}
 		}
 	}
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Queue', true));
+			$this->Session->setFlash('Invalid Queue');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Queue->save($this->data)) {
-				$this->Session->setFlash(__('The Queue has been saved', true));
+				$this->Session->setFlash('The Queue has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Queue could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Queue could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -49,11 +51,11 @@ class QueuesController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Queue', true));
+			$this->Session->setFlash('Invalid id for Queue');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Queue->del($id)) {
-			$this->Session->setFlash(__('Queue deleted', true));
+			$this->Session->setFlash('Queue deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}

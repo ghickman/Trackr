@@ -1,39 +1,19 @@
 <?php
-/* SVN FILE: $Id: app_controller.php 7945 2008-12-19 02:16:01Z gwoo $ */
-/**
- * Short description for file.
- *
- * This file is application-wide controller file. You can put all
- * application-wide controller-related methods here.
- *
- * PHP versions 4 and 5
- *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @filesource
- * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
- * @package       cake
- * @subpackage    cake.app
- * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision: 7945 $
- * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
- */
-/**
- * Short description for class.
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @package       cake
- * @subpackage    cake.app
- */
 class AppController extends Controller {
+    var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession');
+    var $components = array('Auth');
+	
+    function beforeFilter() {		
+	    //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+	    //$this->Auth->logoutRedirect = array('controller' => 'posts', 'action' => 'index');
+	    //$this->Auth->loginRedirect = array('controller'=>'tickets', 'action'=>'index');
+    }
+
+	function slug($str) {
+		$str = strtolower(str_replace(' ', '_', $str));
+		$pattern = "/[^a-zA-Z0-9_]/";
+		$str = preg_replace($pattern, '', $str);
+		return $str;
+	}
 }
 ?>

@@ -30,9 +30,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Application', true), array('action'=>'edit', $application['Application']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Application', true), array('action'=>'delete', $application['Application']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $application['Application']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Applications', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Application', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('Edit Application', true), array('action'=>'edit', $application['Application']['id'])); ?></li>
+		<li><?php echo $html->link(__('Delete Application', true), array('action'=>'delete', $application['Application']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $application['Application']['id'])); ?></li>
+		<li><?php echo $html->link(__('List Applications', true), array('action'=>'index')); ?></li>
+		<li><?php echo $html->link(__('New Application', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

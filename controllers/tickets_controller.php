@@ -1,9 +1,11 @@
 <?php
 class TicketsController extends AppController {
-
 	var $name = 'Tickets';
-	var $helpers = array('Html', 'Form');
-
+    
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
+    
 	function index() {
 		$this->Ticket->recursive = 0;
 		$this->set('tickets', $this->paginate());
@@ -11,7 +13,7 @@ class TicketsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Ticket.', true));
+			$this->Session->setFlash('Invalid Ticket.');
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('ticket', $this->Ticket->read(null, $id));
@@ -21,15 +23,15 @@ class TicketsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Ticket->create();
 			if ($this->Ticket->save($this->data)) {
-				$this->Session->setFlash(__('The Ticket has been saved', true));
+				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Ticket could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
 			}
 		}
-		$applications = $this->Ticket->Application->find('list');
+		$applications = $this->Ticket->Application->find('list', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
 		$users = $this->Ticket->User->find('list');
-		$releases = $this->Ticket->Release->find('list');
+		$releases = $this->Ticket->Release->find('list', array('fields'=>'date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
 		$this->set(compact('applications', 'users', 'releases', 'statuses', 'queues'));
@@ -37,7 +39,7 @@ class TicketsController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Ticket', true));
+			$this->Session->setFlash('Invalid Ticket');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
@@ -45,7 +47,7 @@ class TicketsController extends AppController {
 				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Ticket could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -61,14 +63,22 @@ class TicketsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Ticket', true));
+			$this->Session->setFlash('Invalid id for Ticket');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Ticket->del($id)) {
-			$this->Session->setFlash(__('Ticket deleted', true));
+			$this->Session->setFlash('Ticket deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
+	
+	function autoComplete() {
+	    //Configure::write('debug', 0);
+	    
+	    $applications = $this->Ticket->Application->find('all', array(
+	        'conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'),
+	        'fields'=>array('name', 'id')
+	    ));
+	}
 }
 ?>

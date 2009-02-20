@@ -5,7 +5,7 @@ App::import('Model', 'Status');
 
 class StatusTestCase extends CakeTestCase {
 	var $Status = null;
-	var $fixtures = array('app.status', 'app.ticket');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Status =& ClassRegistry::init('Status');

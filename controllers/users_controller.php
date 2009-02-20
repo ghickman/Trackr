@@ -1,8 +1,14 @@
 <?php
 class UsersController extends AppController {
-
 	var $name = 'Users';
-	var $helpers = array('Html', 'Form');
+	
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
+	
+	function login() {
+	    //Auth magikz
+	}
 
 	function index() {
 		$this->User->recursive = 0;
@@ -11,7 +17,7 @@ class UsersController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid User.', true));
+			$this->Session->setFlash('Invalid User.');
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
@@ -21,10 +27,10 @@ class UsersController extends AppController {
 		if (!empty($this->data)) {
 			$this->User->create();
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true));
+				$this->Session->setFlash('The User has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The User could not be saved. Please, try again.');
 			}
 		}
 		$tickets = $this->User->Ticket->find('list');
@@ -34,15 +40,15 @@ class UsersController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash('Invalid User');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true));
+				$this->Session->setFlash('The User has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The User could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -55,14 +61,28 @@ class UsersController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for User', true));
+			$this->Session->setFlash('Invalid id for User');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->User->del($id)) {
-			$this->Session->setFlash(__('User deleted', true));
+			$this->Session->setFlash('User deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
+	
+	function ajax_validate() {
+	    Configure::write('debug', 0);
+	    
+	    if($this->RequestHandler->isAjax()) {
+	        $this->data['User'][$this->params['form']['field']] = $this->params['form']['value'];
+	        $this->User->set($this->data);
+	        if($this->User->validates()) {
+	            $this->autoRender = false;
+	        } else {
+	            $errorArray = $this->validateErrors($this->User);
+	            $this->set('error', $errorArray[$this->params['form']['field']]);
+	        }
+	    }
+	}
 }
 ?>

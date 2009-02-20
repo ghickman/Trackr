@@ -35,9 +35,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Comment', true), array('action'=>'edit', $comment['Comment']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Comment', true), array('action'=>'delete', $comment['Comment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Comments', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Comment', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('Edit Comment', true), array('action'=>'edit', $comment['Comment']['id'])); ?></li>
+		<li><?php echo $html->link(__('Delete Comment', true), array('action'=>'delete', $comment['Comment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?></li>
+		<li><?php echo $html->link(__('List Comments', true), array('action'=>'index')); ?></li>
+		<li><?php echo $html->link(__('New Comment', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

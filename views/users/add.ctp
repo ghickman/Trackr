@@ -1,11 +1,13 @@
 <div class="users form">
+<?php echo $javascript->link('jquery/jquery.min', false);?>
+<?php echo $javascript->link('jquery/plugins/validation', false);?>
 <?php echo $form->create('User');?>
 	<fieldset>
  		<legend><?php __('Add User');?></legend>
 	<?php
 		echo $form->input('slug');
-		echo $form->input('username');
-		echo $form->input('password');
+		echo $form->input('username', array('id'=>'username'));
+		echo $form->input('password', array('id'=>'password'));
 		echo $form->input('group_id');
 	?>
 	</fieldset>

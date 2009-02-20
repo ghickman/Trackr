@@ -1,49 +1,20 @@
 <?php
 class User extends AppModel {
-
 	var $name = 'User';
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	var $belongsTo = array(
-			'Group' => array('className' => 'Group',
-								'foreignKey' => 'group_id',
-								'conditions' => '',
-								'fields' => '',
-								'order' => ''
-			)
+	var $belongsTo = array('Group');
+	var $hasMany = array('Comment');
+	var $hasAndBelongsToMany = array('Ticket');
+	
+	var $validate = array(
+	    'username'=>array(
+	        'isUnique'=>array('rule'=>'isUnique', 'message'=>'Sorry, this username already exists'),
+	        'between'=>array('rule'=>array('between', '3', '255'), 'message'=>'Username must be between 3 and 255 characters')
+	    ),
+	    'password'=>array(
+	        'rule'=>array('between', 8, 50),
+	        'message'=>'Passwords must be between 8 and 50 characters long'
+	    )
 	);
-
-	var $hasMany = array(
-			'Comment' => array('className' => 'Comment',
-								'foreignKey' => 'user_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			)
-	);
-
-	var $hasAndBelongsToMany = array(
-			'Ticket' => array('className' => 'Ticket',
-						'joinTable' => 'tickets_users',
-						'foreignKey' => 'user_id',
-						'associationForeignKey' => 'ticket_id',
-						'unique' => true,
-						'conditions' => '',
-						'fields' => '',
-						'order' => '',
-						'limit' => '',
-						'offset' => '',
-						'finderQuery' => '',
-						'deleteQuery' => '',
-						'insertQuery' => ''
-			)
-	);
-
 }
 ?>

@@ -30,9 +30,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Release', true), array('action'=>'edit', $release['Release']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Release', true), array('action'=>'delete', $release['Release']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $release['Release']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Releases', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Release', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('Edit Release', true), array('action'=>'edit', $release['Release']['id'])); ?></li>
+		<li><?php echo $html->link(__('Delete Release', true), array('action'=>'delete', $release['Release']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $release['Release']['id'])); ?></li>
+		<li><?php echo $html->link(__('List Releases', true), array('action'=>'index')); ?></li>
+		<li><?php echo $html->link(__('New Release', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

@@ -1,9 +1,11 @@
 <?php
 class StatusesController extends AppController {
-
 	var $name = 'Statuses';
-	var $helpers = array('Html', 'Form');
-
+    
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
+	
 	function index() {
 		$this->Status->recursive = 0;
 		$this->set('statuses', $this->paginate());
@@ -11,7 +13,7 @@ class StatusesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Status.', true));
+			$this->Session->setFlash('Invalid Status.');
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('status', $this->Status->read(null, $id));
@@ -21,25 +23,25 @@ class StatusesController extends AppController {
 		if (!empty($this->data)) {
 			$this->Status->create();
 			if ($this->Status->save($this->data)) {
-				$this->Session->setFlash(__('The Status has been saved', true));
+				$this->Session->setFlash('The Status has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Status could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Status could not be saved. Please, try again.');
 			}
 		}
 	}
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Status', true));
+			$this->Session->setFlash('Invalid Status');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Status->save($this->data)) {
-				$this->Session->setFlash(__('The Status has been saved', true));
+				$this->Session->setFlash('The Status has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Status could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The Status could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -49,14 +51,13 @@ class StatusesController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Status', true));
+			$this->Session->setFlash('Invalid id for Status');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Status->del($id)) {
-			$this->Session->setFlash(__('Status deleted', true));
+			$this->Session->setFlash('Status deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
 }
 ?>

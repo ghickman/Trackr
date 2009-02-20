@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Ticket Fixture generated on: 2009-02-11 09:02:25 : 1234342885*/
+/* Ticket Fixture generated on: 2009-02-19 11:02:09 : 1235042109*/
 
 class TicketFixture extends CakeTestFixture {
 	var $name = 'Ticket';
@@ -27,8 +27,8 @@ class TicketFixture extends CakeTestFixture {
 			'release_id'  => 'Lorem ips',
 			'status_id'  => 'Lorem ips',
 			'queue_id'  => 'Lorem ips',
-			'created'  => '2009-02-11 09:01:25',
-			'modified'  => '2009-02-11 09:01:25'
+			'created'  => '2009-02-19 11:15:09',
+			'modified'  => '2009-02-19 11:15:09'
 			));
 }
 ?>

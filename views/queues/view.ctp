@@ -35,9 +35,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Queue', true), array('action'=>'edit', $queue['Queue']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Queue', true), array('action'=>'delete', $queue['Queue']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $queue['Queue']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Queues', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Queue', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('Edit Queue', true), array('action'=>'edit', $queue['Queue']['id'])); ?></li>
+		<li><?php echo $html->link(__('Delete Queue', true), array('action'=>'delete', $queue['Queue']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $queue['Queue']['id'])); ?></li>
+		<li><?php echo $html->link(__('List Queues', true), array('action'=>'index')); ?></li>
+		<li><?php echo $html->link(__('New Queue', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

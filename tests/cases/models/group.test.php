@@ -5,7 +5,7 @@ App::import('Model', 'Group');
 
 class GroupTestCase extends CakeTestCase {
 	var $Group = null;
-	var $fixtures = array('app.group', 'app.queue', 'app.user');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Group =& ClassRegistry::init('Group');
