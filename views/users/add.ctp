@@ -6,8 +6,8 @@
  		<legend><?php __('Add User');?></legend>
 	<?php
 		echo $form->input('slug');
-		echo $form->input('username', array('id'=>'username'));
-		echo $form->input('password', array('id'=>'password'));
+		echo $form->input('username', array('id'=>'validation'));
+		echo $form->input('password', array('id'=>'validation'));
 		echo $form->input('group_id');
 	?>
 	</fieldset>
@@ -15,6 +15,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('List Users', true), array('action'=>'index'));?></li>
+		<li><?php echo $html->link('List Users', array('action'=>'index'));?></li>
 	</ul>
 </div>
