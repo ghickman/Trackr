@@ -1,5 +1,11 @@
 <div class="tickets form">
-<?php echo $javascript->link('jquery/jquery.min', false);?>
+<?php 
+	//echo $javascript->link('jquery/jquery.min', false);
+	//echo $javascript->link('jquery/plugins/autocomplete', false);
+	//echo $javascript->link('jquery/autocompleteAction.js', false);
+	echo $javascript->link('prototype/prototype');
+	echo $javascript->link('scriptaculous/scriptaculous');
+?>
 <?php echo $form->create('Ticket');?>
 	<fieldset>
  		<legend><?php __('Add Ticket');?></legend>
@@ -7,7 +13,7 @@
 		echo $form->input('name');
 		echo $form->input('slug');
 		echo $form->label('Application');
-		echo $form->text('application', array('size'=>'30', 'id'=>'autoComplete'));
+		echo $ajax->autoComplete('Application.name', '/tickets/autocomplete');
 		echo $form->input('problem');
 		echo $form->input('is_complete');
 		echo $form->input('release_id');
@@ -22,13 +28,3 @@
 		<li><?php echo $html->link('List Tickets', array('action'=>'index'));?></li>
 	</ul>
 </div>
-
-<?php
-if(!empty($applications)) { 
-	foreach($applications as $application) {  
-  		echo key($applications).'|'.$application[0].'^';  
- 	}  
-} else {  
-	echo 'No results';  
-}
-?>
