@@ -2,7 +2,6 @@
 class TicketsController extends AppController {
 	var $name = 'Tickets';
 	
-	var $uses = array('Ticket', 'Application');
 	var $components = array('Autocomplete');
     
 	function beforeFilter() {
@@ -32,7 +31,7 @@ class TicketsController extends AppController {
 				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
 			}
 		}
-		$applications = $this->Ticket->Application->find('list');
+		//$applications = $this->Ticket->Application->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'date_of'));
 		$statuses = $this->Ticket->Status->find('list');
@@ -74,21 +73,13 @@ class TicketsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-	
-	function autocomplete() {
-        //Partial strings will come from the autocomplete field as $this->data['Post']['subject']
-        $this->set('tickets', $this->Ticket->Application->find('all', array('conditions' => array('Application.name LIKE' => $this->data['Application']['name'].'%'), 'fields' => array('name'))));
-        $this->layout = 'ajax';
-    }
     
-	
-	/*function autoComplete() {
-	    //Configure::write('debug', 0);
-	    , array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id'))
-	    $applications = $this->Ticket->Application->find('all', array(
-	        'conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'),
-	        'fields'=>array('name', 'id')
-	    ));
-	}*/
+    function autoComplete() {
+        Configure::write('debug', 0);
+        $this->layout = 'ajax';
+
+        $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
+        $this->set('applications', $applications);
+    }
 }
 ?>
