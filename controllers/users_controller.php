@@ -1,6 +1,7 @@
 <?php
 class UsersController extends AppController {
 	var $name = 'Users';
+	var $helpers = array('JqueryForm');
 	
 	function beforeFilter() {
 		$this->Auth->allow('*');
@@ -72,7 +73,7 @@ class UsersController extends AppController {
 	
 	function ajax_validate() {
 	    Configure::write('debug', 0);
-	    
+	    echo 'blah';
 	    if($this->RequestHandler->isAjax()) {
 	        $this->data['User'][$this->params['form']['field']] = $this->params['form']['value'];
 	        $this->User->set($this->data);

@@ -32,21 +32,24 @@ class JqueryFormHelper extends AppHelper {
 							ids[i] = field.id;
 							if (field.message) {
 								input = $("#"+field.id);
-								if (input.siblings('.error').length > 0) {
-									input.siblings('.error').html(field.message);
+								input.parents('div.input:first').addClass('error');
+								if (input.siblings('.error-message').length > 0) {
+									input.siblings('.error-message').html(field.message);
 								} else {
-									$('<div class="error">' + field.message + '</div>')
+									$('<div class="error-message">' + field.message + '</div>')
 										.data('input.id', field.id)
 										.insertAfter(input);
 								}
 							}
 						});
 
-						$("div.error")
+						$("div.error-message")
 							.each(function(i, errorDiv){
 								invalid = $.inArray($(errorDiv).data('input.id'), ids);
-								if (invalid < 0)
-									$(errorDiv).remove();
+								if (invalid < 0) {
+									$(errorDiv).parents('div.error:first').removeClass('error');
+									$(errorDiv).fadeOut().remove();
+								}
 							});
 			        }
 			    });
@@ -63,5 +66,7 @@ END;
 		$this->forms[] = $id;
 		return $this->output("<input type=\"hidden\" name=\"data[__validate]\" value=\"1\"");
 	}
+	
 }
+
 ?>

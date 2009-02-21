@@ -25,7 +25,8 @@ class JqueryFormComponent extends Component {
 	/**
 	 *  Returns a JSON encoded array of invalid fields for the models in the POST data
 	 */	
-	function validate($data) {	
+	function validate($data) {
+				
 		$validated = array();
 		foreach ($data as $model => $d) {
 			$class = ClassRegistry::init($model);
