@@ -1,0 +1,33 @@
+#flashMessage {
+    border      : 3px solid #bedf5d;
+    background  : #e2f1a8;
+    color       : #999;
+    padding     : 10px;
+    font-weight : bold; 
+    margin      : 15px 0;
+    text-align  : center;
+}
+
+.flash {
+    border      : 3px solid #ff9b00;
+    background  : #ffcc80;
+    padding     :10px;
+    font-weight : bold;
+    margin      : 15px 0;
+}
+
+.flash_success {
+    border      : 3px solid #bedf5d;
+    background  : #e2f1a8;
+    padding     : 10px;
+    font-weight : bold;
+    margin      : 15px 0;
+}
+
+.flash_failure {
+    border      : 3px solid #990000;
+    background  : #f97d88;
+    padding     : 10px;
+    font-weight : bold;
+    margin      : 15px 0;
+}

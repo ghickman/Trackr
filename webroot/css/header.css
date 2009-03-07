@@ -1,0 +1,33 @@
+div#header {
+	height		: 165px;
+    position    : relative;
+	background  : url(../img/header.png) repeat-x center center;
+	margin 		: 0 0 10px 0;
+}
+
+div#logo {
+	float       : right;
+	margin 		: 17px 15px 0 0;
+}
+
+/* Menu Items */
+div#menu ul li {
+	float 		: left;
+	list-style	: none;
+	display     : inline;
+	margin 		: 133px 0 6px 0px;
+}
+
+li.menu_item a {
+	height 		: 28px;
+	color 		: #FFF;
+	font-size	: 18px;
+	font-family : Verdana, sans-serif;
+	text-transform: capitalize;
+	text-decoration: none;
+	outline		: none;
+	padding 	: 6px 10px 9px 10px;
+}
+
+#menu a:hover {background:url(../img/menu_hover.png) repeat-x center center;}
+/*body#posts_view a#home img{background:url(../img/menu_hover_home.png) top left no-repeat;}*/

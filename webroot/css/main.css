@@ -1,0 +1,34 @@
+/* reset CSS for all browsers*/
+* {
+	padding:0;
+    margin:0;
+}
+
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address {margin:0;}
+li, dd {margin-left:5%;}
+fieldset {padding: .5em;}
+
+select option {padding:0 5px;}
+
+.hide, .print-logo, .close-button {display:none;}
+.left {float:left;}
+.right {float:right;}
+.clr {clear:both; height:1px; font-size:1px; line-height:1px;}
+a img {border:none;}
+
+
+/* mac hide\*/
+html, body {
+	height: 100%
+}
+/* end hide */
+
+html, body {
+    font-size   : 13px;
+    font-family : "Lucida Grande" "Trebuchet MS";
+}
+
+.wrapper {
+	width  		: 999px;
+	margin 		: 0 auto;
+}

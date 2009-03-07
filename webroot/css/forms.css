@@ -1,0 +1,47 @@
+/*Forms*/
+form {
+	clear 		: both;
+	margin-right: 20px;
+	padding 	: 0;
+}
+
+form div {
+	clear 		: both;
+	margin-bottom: 1em;
+	padding 	: 0.5em;
+	vertical-align: text-top;
+}
+
+form div.input {
+	color 		: #444;
+}
+
+form div.submit {
+	border 		: 0 none;
+	clear 		: both;
+	width		: 40px;
+	margin-left : 0px;
+	margin-top  : 10px;
+}
+
+form legend a {
+    text-decoration: none;
+    color       : #000000;
+}
+
+input, textarea {
+	clear 		: both;
+	display 	: block;
+	font-family : "frutiger linotype","lucida grande","verdana",sans-serif;
+	font-size 	: 100%;
+	padding 	: 2px;
+	width 		: 100%;
+}
+
+input[type="submit"] {
+	display 	: inline;
+	font-size 	: 110%;
+	padding 	: 2px 5px;
+	vertical-align: bottom;
+	width 		: auto;
+}
