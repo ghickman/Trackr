@@ -4,6 +4,6 @@ class Ticket extends AppModel {
 
 	var $belongsTo = array('Release', 'Status', 'Queue');
 	var $hasMany = array('Comment');
-	var $hasAndBelongsToMany = array('Application', 'User');
+	var $hasAndBelongsToMany = array('Application', 'Priority', 'User');
 }
 ?>

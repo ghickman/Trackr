@@ -1,8 +1,6 @@
 <?php
 class TicketsController extends AppController {
 	var $name = 'Tickets';
-	
-	var $components = array('Autocomplete');
     
 	function beforeFilter() {
 		$this->Auth->allow('*');
@@ -32,11 +30,12 @@ class TicketsController extends AppController {
 			}
 		}
 		//$applications = $this->Ticket->Application->find('list');
+		$priorities = $this->Ticket->Priority->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('applications', 'users', 'releases', 'statuses', 'queues'));
+		$this->set(compact('applications', 'priorities'));
 	}
 
 	function edit($id = null) {
@@ -56,11 +55,13 @@ class TicketsController extends AppController {
 			$this->data = $this->Ticket->read(null, $id);
 		}
 		$applications = $this->Ticket->Application->find('list');
+		$priorities = $this->Ticket->Priority->find('list');
+		$priorities = $this->Ticket->Priority->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'Release.date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('applications','users','releases','statuses','queues'));
+		$this->set(compact('applications', 'priorities'));
 	}
 
 	function delete($id = null) {
@@ -73,13 +74,13 @@ class TicketsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-    
-    function autoComplete() {
-        Configure::write('debug', 0);
-        $this->layout = 'ajax';
+  
+  function autoComplete() {
+    Configure::write('debug', 0);
+    $this->layout = 'ajax';
 
-        $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
-        $this->set('applications', $applications);
-    }
+    $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
+    $this->set('applications', $applications);
+  }
 }
 ?>

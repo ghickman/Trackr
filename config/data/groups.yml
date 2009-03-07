@@ -1,0 +1,14 @@
+-
+  id: '1'
+  name: Administrators
+  slug: administrators
+  queue_id: '1'
+  created: '2009-02-20 16:03:19'
+  modified: '2009-02-20 16:03:19'
+-
+  id: '2'
+  name: Managers
+  slug: managers
+  queue_id: '1'
+  created: '2009-02-20 16:03:29'
+  modified: '2009-02-20 16:03:29'
