@@ -4,7 +4,6 @@
  		<legend><?php __('Add Group');?></legend>
 	<?php
 		echo $form->input('name');
-		echo $form->input('slug');
 		echo $form->input('queue_id');
 	?>
 	</fieldset>

@@ -4,7 +4,6 @@
  		<legend><?php __('Add Queue');?></legend>
 	<?php
 		echo $form->input('name');
-		echo $form->input('slug');
 		echo $form->input('is_first_line');
 	?>
 	</fieldset>

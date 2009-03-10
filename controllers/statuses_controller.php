@@ -22,6 +22,7 @@ class StatusesController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Status->create();
+			$this->data['Status']['slug'] = $this->slug($this->data['Status']['name']);
 			if ($this->Status->save($this->data)) {
 				$this->Session->setFlash('The Status has been saved');
 				$this->redirect(array('action'=>'index'));

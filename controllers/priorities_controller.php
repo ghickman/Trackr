@@ -3,6 +3,17 @@ class PrioritiesController extends AppController {
 
 	var $name = 'Priorities';
 	var $helpers = array('Html', 'Form');
+	
+	/**
+	 * Controller beforeFilter callback.
+	 * Called before the controller action. 
+	 * 
+	 * @return void
+	 */
+	function beforeFilter() {
+	   $this->Auth->allow('*');
+	}
+	
 
 	function index() {
 		$this->Priority->recursive = 0;
@@ -20,6 +31,7 @@ class PrioritiesController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Priority->create();
+			$this->data['Priority']['slug'] = $this->slug($this->data['Priority']['name']);
 			if ($this->Priority->save($this->data)) {
 				$this->Session->setFlash(__('The Priority has been saved', true));
 				$this->redirect(array('action'=>'index'));

@@ -5,7 +5,7 @@ App::import('Model', 'Queue');
 
 class QueueTestCase extends CakeTestCase {
 	var $Queue = null;
-	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.priority', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Queue =& ClassRegistry::init('Queue');

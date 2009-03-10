@@ -3,11 +3,9 @@
 	<fieldset>
  		<legend><?php __('Edit Ticket');?></legend>
 	<?php
-		echo $form->input('id');
-		echo $form->input('name');
-		echo $form->input('slug');
+		echo $form->input('title');
 		echo $form->input('problem');
-		echo $form->input('is_complete');
+		echo $form->input('date_completed');
 		echo $form->input('release_id');
 		echo $form->input('status_id');
 		echo $form->input('queue_id');

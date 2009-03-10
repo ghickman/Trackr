@@ -5,7 +5,7 @@ App::import('Model', 'Comment');
 
 class CommentTestCase extends CakeTestCase {
 	var $Comment = null;
-	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.priority', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Comment =& ClassRegistry::init('Comment');

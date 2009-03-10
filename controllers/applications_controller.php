@@ -22,6 +22,7 @@ class ApplicationsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Application->create();
+			$this->data['Application']['slug'] = $this->slug($this->data['Application']['name']);
 			if ($this->Application->save($this->data)) {
 				$this->Session->setFlash('The Application has been saved');
 				$this->redirect(array('action'=>'index'));

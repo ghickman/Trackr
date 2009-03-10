@@ -9,10 +9,9 @@ echo $paginator->counter(array(
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('name');?></th>
-	<th><?php echo $paginator->sort('slug');?></th>
+	<th><?php echo $paginator->sort('title');?></th>
 	<th><?php echo $paginator->sort('problem');?></th>
-	<th><?php echo $paginator->sort('is_complete');?></th>
+	<th><?php echo $paginator->sort('date_completed');?></th>
 	<th><?php echo $paginator->sort('release_id');?></th>
 	<th><?php echo $paginator->sort('status_id');?></th>
 	<th><?php echo $paginator->sort('queue_id');?></th>
@@ -33,16 +32,13 @@ foreach ($tickets as $ticket):
 			<?php echo $ticket['Ticket']['id']; ?>
 		</td>
 		<td>
-			<?php echo $ticket['Ticket']['name']; ?>
-		</td>
-		<td>
-			<?php echo $ticket['Ticket']['slug']; ?>
+			<?php echo $ticket['Ticket']['title']; ?>
 		</td>
 		<td>
 			<?php echo $ticket['Ticket']['problem']; ?>
 		</td>
 		<td>
-			<?php echo $ticket['Ticket']['is_complete']; ?>
+			<?php echo $ticket['Ticket']['date_completed']; ?>
 		</td>
 		<td>
 			<?php echo $ticket['Ticket']['release_id']; ?>

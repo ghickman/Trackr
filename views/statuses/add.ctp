@@ -4,7 +4,6 @@
  		<legend><?php __('Add Status');?></legend>
 	<?php
 		echo $form->input('name');
-		echo $form->input('slug');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

@@ -41,4 +41,7 @@
  *
  */
 //EOF
+$pluginPaths = array(
+    '/opt/cake_plugins/',
+);
 ?>

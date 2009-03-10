@@ -27,6 +27,7 @@ class UsersController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->User->create();
+			$this->data['User']['slug'] = $this->slug($this->data['User']['username']);
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash('The User has been saved');
 				$this->redirect(array('action'=>'index'));

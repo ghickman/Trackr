@@ -5,7 +5,7 @@ App::import('Model', 'Release');
 
 class ReleaseTestCase extends CakeTestCase {
 	var $Release = null;
-	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
+	var $fixtures = array('app.application', 'app.comment', 'app.group', 'app.priority', 'app.queue', 'app.release', 'app.ticket',  'app.status', 'app.user');
 
 	function startTest() {
 		$this->Release =& ClassRegistry::init('Release');

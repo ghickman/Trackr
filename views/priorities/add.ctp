@@ -2,18 +2,15 @@
 <?php echo $form->create('Priority');?>
 	<fieldset>
  		<legend><?php __('Add Priority');?></legend>
-	<?php
-		echo $form->input('name');
-		echo $form->input('slug');
-		echo $form->input('Ticket');
-	?>
+		<?php
+			echo $form->input('name');
+		?>
 	</fieldset>
 <?php echo $form->end('Submit');?>
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('List Priorities', true), array('action'=>'index'));?></li>
-		<li><?php echo $html->link(__('List Tickets', true), array('controller'=> 'tickets', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Ticket', true), array('controller'=> 'tickets', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link('List Priorities', array('action'=>'index'));?></li>
+		<li><?php echo $html->link('New Ticket', array('controller'=> 'tickets', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

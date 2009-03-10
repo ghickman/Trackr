@@ -4,5 +4,11 @@ class Group extends AppModel {
 
 	var $belongsTo = array('Queue');
 	var $hasMany = array('User');
+	
+	var $actsAs = array('Acl' => array('requester'));
+	
+	function parentNode() {
+	    return null;
+	}
 }
 ?>

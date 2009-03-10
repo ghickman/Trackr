@@ -5,7 +5,6 @@
 	<fieldset>
  		<legend><?php __('Add User');?></legend>
 	<?php
-		echo $form->input('slug');
 		echo $form->input('username', array('id'=>'validation'));
 		echo $form->input('password', array('id'=>'validation'));
 		echo $form->input('group_id');

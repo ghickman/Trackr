@@ -16,12 +16,15 @@ class QueuesController extends AppController {
 			$this->Session->setFlash('Invalid Queue.');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('queue', $this->Queue->read(null, $id));
+		$tickets = $this->Queue->Ticket->find('all', array('conditions'=>array('Ticket.status_id'=>$id)));
+		$queue = $this->Queue->read(null, $id);
+		$this->set(compact('queue', 'tickets'));
 	}
 
 	function add() {
 		if (!empty($this->data)) {
 			$this->Queue->create();
+			$this->data['Queue']['slug'] = $this->slug($this->data['Queue']['name']);
 			if ($this->Queue->save($this->data)) {
 				$this->Session->setFlash('The Queue has been saved');
 				$this->redirect(array('action'=>'index'));

@@ -1,8 +1,8 @@
 <?php
 class TicketsController extends AppController {
 	var $name = 'Tickets';
-    
-	function beforeFilter() {
+  
+    function beforeFilter() {
 		$this->Auth->allow('*');
 	}
     
@@ -22,6 +22,11 @@ class TicketsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Ticket->create();
+			//add default queue and status
+			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
+			$this->data['Ticket']['status_id'] = $status['Status']['id'];
+			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id')));
+			$this->data['Ticket']['queue_id'] = $queue['Status']['id'];
 			if ($this->Ticket->save($this->data)) {
 				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
@@ -29,12 +34,13 @@ class TicketsController extends AppController {
 				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
 			}
 		}
-		//$applications = $this->Ticket->Application->find('list');
+		$applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'date_of'));
-		$statuses = $this->Ticket->Status->find('list');
+		//$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
+		//$statuses = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name LIKE'=>'pending'), 'fields'=>array('id')));
 		$this->set(compact('applications', 'priorities'));
 	}
 
@@ -44,6 +50,7 @@ class TicketsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
+		    $this->data['Ticket']['slug'] = $this->slug($this->data['Ticket']['title']);
 			if ($this->Ticket->save($this->data)) {
 				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
@@ -56,12 +63,11 @@ class TicketsController extends AppController {
 		}
 		$applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
-		$priorities = $this->Ticket->Priority->find('list');
 		$users = $this->Ticket->User->find('list');
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'Release.date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('applications', 'priorities'));
+		$this->set(compact('applications', 'priorities', 'queues', 'releases', 'statuses', 'users'));
 	}
 
 	function delete($id = null) {

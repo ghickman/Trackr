@@ -22,6 +22,7 @@ class GroupsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Group->create();
+			$this->data['Group']['slug'] = $this->slug($this->data['Group']['name']);
 			if ($this->Group->save($this->data)) {
 				$this->Session->setFlash('The Group has been saved');
 				$this->redirect(array('action'=>'index'));

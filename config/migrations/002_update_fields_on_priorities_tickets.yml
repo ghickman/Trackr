@@ -1,0 +1,10 @@
+UP:
+  rename_field:
+    priorities_tickets:
+      priorities_id: priority_id
+      tickets_id: ticket_id
+DOWN:
+  rename_field:
+    priorities_tickets:
+      priority_id: priorities_id
+      ticket_id: tickets_id

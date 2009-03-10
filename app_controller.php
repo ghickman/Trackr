@@ -4,9 +4,9 @@ class AppController extends Controller {
     var $components = array('Auth');
 	
     function beforeFilter() {		
-	    //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-	    //$this->Auth->logoutRedirect = array('controller' => 'posts', 'action' => 'index');
-	    //$this->Auth->loginRedirect = array('controller'=>'tickets', 'action'=>'index');
+	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+	    $this->Auth->logoutRedirect = array('controller' => 'posts', 'action' => 'index');
+	    $this->Auth->loginRedirect = array('controller'=>'tickets', 'action'=>'index');
     }
 
 	function slug($str) {
