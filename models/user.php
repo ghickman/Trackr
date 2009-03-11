@@ -3,8 +3,7 @@ class User extends AppModel {
 	var $name = 'User';
 
 	var $belongsTo = array('Group');
-	var $hasMany = array('Comment');
-	var $hasAndBelongsToMany = array('Ticket');
+	var $hasMany = array('Comment', 'Ticket');
 	
 	var $actsAs = array('Acl' => array('requester'));
 	

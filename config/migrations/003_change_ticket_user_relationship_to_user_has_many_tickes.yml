@@ -1,0 +1,8 @@
+UP:
+  add_field:
+    tickets:
+      user_id: [11]
+DOWN:
+  drop_table:
+    tickets:
+      user_id: [11]
