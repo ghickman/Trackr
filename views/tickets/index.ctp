@@ -6,6 +6,7 @@ echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
 ?></p>
+<?php pr($tickets);?>
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
@@ -15,6 +16,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('release_id');?></th>
 	<th><?php echo $paginator->sort('status_id');?></th>
 	<th><?php echo $paginator->sort('queue_id');?></th>
+	<th><?php echo $paginator->sort('user_id');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
 	<th><?php echo $paginator->sort('modified');?></th>
 	<th class="actions"><?php __('Actions');?></th>
@@ -48,6 +50,9 @@ foreach ($tickets as $ticket):
 		</td>
 		<td>
 			<?php echo $ticket['Ticket']['queue_id']; ?>
+		</td>
+		<td>
+			<?php echo $ticket['Ticket']['user_id']; ?>
 		</td>
 		<td>
 			<?php echo $ticket['Ticket']['created']; ?>

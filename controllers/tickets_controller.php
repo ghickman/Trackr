@@ -22,11 +22,16 @@ class TicketsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Ticket->create();
+			
 			//add default queue and status
-			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
+			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id', 'name')));
 			$this->data['Ticket']['status_id'] = $status['Status']['id'];
 			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id')));
-			$this->data['Ticket']['queue_id'] = $queue['Status']['id'];
+			$this->data['Ticket']['queue_id'] = $queue['Queue']['id'];
+			
+			//add user
+			$this->data['Ticket']['user_id'] = $this->Auth->user('id');
+			
 			if ($this->Ticket->save($this->data)) {
 				$this->Session->setFlash('The Ticket has been saved');
 				$this->redirect(array('action'=>'index'));
@@ -36,11 +41,8 @@ class TicketsController extends AppController {
 		}
 		$applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
-		$users = $this->Ticket->User->find('list');
-		$releases = $this->Ticket->Release->find('list', array('fields'=>'date_of'));
-		//$statuses = $this->Ticket->Status->find('list');
-		$queues = $this->Ticket->Queue->find('list');
-		//$statuses = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name LIKE'=>'pending'), 'fields'=>array('id')));
+		//$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id', 'name', 'slug')));
+		//$statuses = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
 		$this->set(compact('applications', 'priorities'));
 	}
 
@@ -81,12 +83,12 @@ class TicketsController extends AppController {
 		}
 	}
   
-  function autoComplete() {
-    Configure::write('debug', 0);
-    $this->layout = 'ajax';
+    function autoComplete() {
+        Configure::write('debug', 0);
+        $this->layout = 'ajax';
 
-    $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
-    $this->set('applications', $applications);
-  }
+        $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
+        $this->set('applications', $applications);
+    }
 }
 ?>

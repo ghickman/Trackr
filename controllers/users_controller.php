@@ -74,7 +74,6 @@ class UsersController extends AppController {
 	
 	function ajax_validate() {
 	    Configure::write('debug', 0);
-	    echo 'blah';
 	    if($this->RequestHandler->isAjax()) {
 	        $this->data['User'][$this->params['form']['field']] = $this->params['form']['value'];
 	        $this->User->set($this->data);
@@ -85,6 +84,15 @@ class UsersController extends AppController {
 	            $this->set('error', $errorArray[$this->params['form']['field']]);
 	        }
 	    }
+	}
+	
+	function home($slug) {
+	    if(!$slug) {
+	        $this->Session->setFlash('Invalid user');
+	        $this->redirect('/');
+	    }
+	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.slug'=>$slug)));
+	    $this->set(compact('tickets'));
 	}
 }
 ?>

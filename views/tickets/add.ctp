@@ -13,8 +13,7 @@
 		//echo $form->text('Application.name', array('id'=>'autoComplete', 'autocomplete'=>'off'));
 		echo $form->input('priority');
 		echo $form->input('problem');
-		//echo $form->input('status');
-		//pr($statuses);
+		//pr($status);
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>
