@@ -3,8 +3,10 @@
   name: 'Quick Fix'
   slug: quick_fix
   is_first_line: '1'
+  twitter_username: 'tellann1stLine'
 -
   id: '2'
   name: Lazy
   slug: lazy
   is_first_line: '0'
+  twitter_username: 'tellann2ndLine'

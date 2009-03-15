@@ -7,6 +7,10 @@ $config['Twitter'] = array(
     'tellannDev'=>array(
         'username' => 'tellannDev',
         'password' => 'Jil)(23af9'
+    ),
+    'tellann1stLine'=>array(
+        'username'=>'tellann1stLine',
+        'password'=>'Jil)(23af9'
     )
 );
 ?>

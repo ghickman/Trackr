@@ -1,0 +1,7 @@
+UP:
+  add_field:
+    queues:
+      twitter_username: [string, 15]
+DOWN:
+  drop_field:
+    queues: twitter_username
