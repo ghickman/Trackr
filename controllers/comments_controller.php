@@ -12,10 +12,7 @@ class CommentsController extends AppController {
 			$this->Session->setFlash('Invalid Comment.');
 			$this->redirect(array('action'=>'index'));
 		}
-		//$comment = $this->Comment->read(null, $id);
-		$comment = $this->Comment->find('all', array('conditions'=>array('Comment.id'=>$id)));
-		//$users = $this->Comment->Users->find('all', array('conditions'=>array('User.id'=>$commnet[''])));
-		$this->set(compact('comment', 'users'));
+		$this->set('comment', $this->Comment->read(null, $id));
 		
 	}
 
