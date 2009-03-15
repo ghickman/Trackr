@@ -1,6 +1,7 @@
 <?php
 class TicketsController extends AppController {
 	var $name = 'Tickets';
+	var $components = array('Twitter');
     
 	function index() {
 		$this->Ticket->recursive = 0;
@@ -16,32 +17,60 @@ class TicketsController extends AppController {
 		$comments = $this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id)));
 		$this->set(compact('ticket', 'comments'));
 	}
+	
+	function __build_twitter_credentials($queue) {
+	    $this->Twitter->username = Configure::read('Twitter.'.$queue.'.username');
+	    $this->Twitter->password = Configure::read('Twitter.'.$queue.'.password');
+	    if ($this->Twitter->account_verify_credentials()) {
+	        return $credentials;
+	    } else {
+	        $this->Session->setFlash('A error occured with your twitter account credentials');
+	        //logs!
+	        $this->redirect(array('action' => 'index'));
+	    }
+	}
+	
+	function __tweet($name, $ticket) {
+	    switch($){
+	        case "add":
+	            $message = "New Ticket: ".$ticket;
+	        case "edit":
+	            $message = "Ticket Edited: ".$ticket;
+	    }
+	    return $message;
+	}
 
 	function add() {
 		if (!empty($this->data)) {
 			$this->Ticket->create();
 			
 			//add default queue and status
-			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id', 'name')));
+			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
 			$this->data['Ticket']['status_id'] = $status['Status']['id'];
-			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id')));
+			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id', 'twitter_username')));
 			$this->data['Ticket']['queue_id'] = $queue['Queue']['id'];
 			
 			//add user
 			$this->data['Ticket']['user_id'] = $this->Auth->user('id');
 			
-			if ($this->Ticket->save($this->data)) {
-				$this->Session->setFlash('The Ticket has been saved');
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
-			}
+			$this->__build_twitter_credentials($queue['Queue']['twitter_username']);
+		    
+		    if($this->Ticket->save($this->data)) {
+		        $this->Session->setFlash('The Ticket has been saved');
+			    
+			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title']))) {
+			        $this->Session->setFlash('An error occurred while trying to tweet');
+			        //logs!
+			    }
+			    
+			    $this->redirect(array('action' => 'index'));
+		    } else {
+		        $this->Session->setFlash('The Ticket could not be saved. Please, try again.');
+		    }
 		}
 		$applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
-		//$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id', 'name', 'slug')));
-		//$statuses = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
-		$this->set(compact('applications', 'priorities'));
+		$this->set(compact('applications', 'priorities', 'credentials', 'queue'));
 	}
 
 	function edit($id = null) {

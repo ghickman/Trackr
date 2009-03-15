@@ -44,4 +44,5 @@
 $pluginPaths = array(
     '/opt/cake_plugins/',
 );
+Configure::load('twitter');
 ?>
