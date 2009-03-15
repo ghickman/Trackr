@@ -21,9 +21,7 @@ class TicketsController extends AppController {
 	function __build_twitter_credentials($queue) {
 	    $this->Twitter->username = Configure::read('Twitter.'.$queue.'.username');
 	    $this->Twitter->password = Configure::read('Twitter.'.$queue.'.password');
-	    if ($this->Twitter->account_verify_credentials()) {
-	        return $credentials;
-	    } else {
+	    if (!$this->Twitter->account_verify_credentials()) {
 	        $this->Session->setFlash('A error occured with your twitter account credentials');
 	        //logs!
 	        $this->redirect(array('action' => 'index'));
@@ -31,11 +29,13 @@ class TicketsController extends AppController {
 	}
 	
 	function __tweet($name, $ticket) {
-	    switch($){
+	    switch($name){
 	        case "add":
 	            $message = "New Ticket: ".$ticket;
+	            break;
 	        case "edit":
 	            $message = "Ticket Edited: ".$ticket;
+	            break;
 	    }
 	    return $message;
 	}
