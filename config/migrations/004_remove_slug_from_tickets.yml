@@ -1,0 +1,7 @@
+UP:
+  drop_field:
+    tickets: slug
+DOWN:
+  add_field:
+    tickets:
+      slug: [string, 255]

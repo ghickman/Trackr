@@ -1,19 +1,6 @@
 <?php
 class PrioritiesController extends AppController {
-
 	var $name = 'Priorities';
-	var $helpers = array('Html', 'Form');
-	
-	/**
-	 * Controller beforeFilter callback.
-	 * Called before the controller action. 
-	 * 
-	 * @return void
-	 */
-	function beforeFilter() {
-	   $this->Auth->allow('*');
-	}
-	
 
 	function index() {
 		$this->Priority->recursive = 0;

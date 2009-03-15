@@ -1,10 +1,18 @@
 <?php
 class GroupsController extends AppController {
 	var $name = 'Groups';
-    
+	
+	/**
+	 * Controller beforeFilter callback.
+	 * Called before the controller action. 
+	 * 
+	 * @return void
+	 */
 	function beforeFilter() {
-		$this->Auth->allow('*');
+	    parent::beforeFilter();
+	    //$this->Auth->allow('add');
 	}
+	
 	
 	function index() {
 		$this->Group->recursive = 0;

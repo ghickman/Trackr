@@ -1,12 +1,15 @@
 <?php
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
-    var $components = array('Auth');
+    var $components = array('Auth', 'Acl');
 	
-    function beforeFilter() {		
+    function beforeFilter() {
+        $this->Auth->authorize = 'actions';
 	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-	    $this->Auth->logoutRedirect = array('controller' => 'posts', 'action' => 'index');
-	    $this->Auth->loginRedirect = array('controller'=>'tickets', 'action'=>'index');
+	    $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+	    $this->Auth->loginRedirect = array('controller'=>'users', 'action'=>'home');
+	    $this->Auth->actionPath = 'controllers/';
+	    $this->Auth->allowedActions = array('display');
     }
 
 	function slug($str) {

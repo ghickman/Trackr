@@ -1,14 +1,21 @@
 -
   id: '1'
-  name: Administrators
+  name: 'Administrators'
   slug: administrators
-  queue_id: '1'
-  created: '2009-02-20 16:03:19'
-  modified: '2009-02-20 16:03:19'
+  queue_id: 1
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
 -
   id: '2'
-  name: Managers
-  slug: managers
-  queue_id: '1'
-  created: '2009-02-20 16:03:29'
-  modified: '2009-02-20 16:03:29'
+  name: 'Support'
+  slug: support
+  queue_id: 1
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '3'
+  name: 'Business'
+  slug: business
+  queue_id: 1
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'

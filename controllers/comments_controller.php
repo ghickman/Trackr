@@ -1,10 +1,6 @@
 <?php
 class CommentsController extends AppController {
 	var $name = 'Comments';
-
-	function beforeFilter() {
-		$this->Auth->allow('*');
-	}
 	
 	function index() {
 		$this->Comment->recursive = 0;
@@ -16,7 +12,11 @@ class CommentsController extends AppController {
 			$this->Session->setFlash('Invalid Comment.');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('comment', $this->Comment->read(null, $id));
+		//$comment = $this->Comment->read(null, $id);
+		$comment = $this->Comment->find('all', array('conditions'=>array('Comment.id'=>$id)));
+		//$users = $this->Comment->Users->find('all', array('conditions'=>array('User.id'=>$commnet[''])));
+		$this->set(compact('comment', 'users'));
+		
 	}
 
 	function add() {

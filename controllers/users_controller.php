@@ -3,12 +3,25 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('JqueryForm');
 	
+	/**
+	 * Controller beforeFilter callback.
+	 * Called before the controller action. 
+	 * 
+	 * @return void
+	 */
 	function beforeFilter() {
-		$this->Auth->allow('*');
+	    parent::beforeFilter();
+	    $this->Auth->allow('logout');
 	}
+	
 	
 	function login() {
 	    //Auth magikz
+	}
+	
+	function logout() {
+		$this->Session->setFlash('Good-Bye');
+		$this->redirect($this->Auth->logout());
 	}
 
 	function index() {
@@ -86,13 +99,14 @@ class UsersController extends AppController {
 	    }
 	}
 	
-	function home($slug) {
-	    if(!$slug) {
-	        $this->Session->setFlash('Invalid user');
-	        $this->redirect('/');
-	    }
-	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.slug'=>$slug)));
-	    $this->set(compact('tickets'));
+	function home() {
+	    $test = $this->Session->read();
+	    $user = $this->Session->read('Auth.User.id');
+	    $group = $this->User->read(null, $this->Session->read('Auth.User.id'));
+	    $queue = $this->User->Group->Queue->find('list', array('conditions'=>array('Queue.id'=>$group['Group']['queue_id'])));
+	    $queue = array_keys($queue);
+	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user)));
+	    $this->set(compact('user', 'tickets', 'group', 'queue', 'test'));
 	}
 }
 ?>

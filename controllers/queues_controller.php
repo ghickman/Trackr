@@ -1,10 +1,6 @@
 <?php
 class QueuesController extends AppController {
 	var $name = 'Queues';
-	
-	function beforeFilter() {
-		$this->Auth->allow('*');
-	}
 
 	function index() {
 		$this->Queue->recursive = 0;

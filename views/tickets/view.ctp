@@ -1,3 +1,14 @@
+<?php 
+pr($ticket);
+//foreach($comments as $comment) {
+//	echo $comment
+//}
+?>
+
+
+
+
+
 <div class="tickets view">
 <h2><?php  __('Ticket');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
@@ -43,6 +54,16 @@
 		</dd>
 	</dl>
 </div>
+
+<?php
+foreach($comments as $comment) {
+	//pr($comment);
+	echo $comment['Comment']['text'];
+	echo "Posted by: " . $comment['User']['username'];
+	echo "<br />";
+	echo "<br />";
+}
+?>
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('Edit Ticket', true), array('action'=>'edit', $ticket['Ticket']['id'])); ?></li>

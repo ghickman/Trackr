@@ -1,10 +1,6 @@
 <?php
 class ReleasesController extends AppController {
 	var $name = 'Releases';
-    
-	function beforeFilter() {
-		$this->Auth->allow('*');
-	}
 
 	function index() {
 		$this->Release->recursive = 0;

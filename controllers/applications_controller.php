@@ -1,10 +1,6 @@
 <?php
 class ApplicationsController extends AppController {
-	var $name = 'Applications';
-
-	function beforeFilter() {
-		$this->Auth->allow('*');
-	}
+	var $name = 'Applications';	
 	
 	function index() {
 		$this->Application->recursive = 0;

@@ -3,6 +3,6 @@ UP:
     tickets:
       user_id: [11]
 DOWN:
-  drop_table:
+  drop_field:
     tickets:
       user_id: [11]

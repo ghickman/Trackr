@@ -1,0 +1,8 @@
+UP:
+  rename_field:
+    tickets:
+      name: title
+DOWN:
+  rename_field:
+    tickets:
+      title: name

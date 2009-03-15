@@ -1,10 +1,6 @@
 <?php
 class TicketsController extends AppController {
 	var $name = 'Tickets';
-  
-    function beforeFilter() {
-		$this->Auth->allow('*');
-	}
     
 	function index() {
 		$this->Ticket->recursive = 0;
@@ -16,7 +12,9 @@ class TicketsController extends AppController {
 			$this->Session->setFlash('Invalid Ticket.');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('ticket', $this->Ticket->read(null, $id));
+		$ticket = $this->Ticket->read(null, $id);
+		$comments = $this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id)));
+		$this->set(compact('ticket', 'comments'));
 	}
 
 	function add() {

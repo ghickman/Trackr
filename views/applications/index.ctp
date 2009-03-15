@@ -1,4 +1,5 @@
 <div class="applications index">
+<?php pr($this->params);?>
 <h2><?php __('Applications');?></h2>
 <p>
 <?php

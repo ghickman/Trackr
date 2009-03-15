@@ -37,7 +37,7 @@ UP:
       name: [string, 255]
       slug: [string, 255]
       problem: [text]
-      is_complete: [boolean]
+      date_completed: [datetime]
       release_id: [11]
       status_id: [11]
       queue_id: [11]

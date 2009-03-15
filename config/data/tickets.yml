@@ -1,1 +1,99 @@
-{  }
+-
+  id: '1'
+  title: 'Firefox won''t work'
+  problem: 'My firefox won''t ask me if I would like to save tabs when I exit it using cmd+q so it just closes. The tabs are still there when I re-open firefox, but it''s annoying when I have other people trying to close my firefox for a joke!'
+  date_completed: '2009-03-20 15:57:00'
+  release_id: '1'
+  status_id: '1'
+  queue_id: '1'
+  created: '2009-03-10 00:10:17'
+  modified: '2009-03-10 15:57:15'
+  user_id: 1
+-
+  id: '2'
+  title: test
+  problem: test
+  date_completed: '2009-03-18 15:57:00'
+  release_id: '3'
+  status_id: '3'
+  queue_id: '1'
+  created: '2009-03-10 10:48:23'
+  modified: '2009-03-10 15:57:27'
+  user_id: 1
+-
+  id: '3'
+  title: tester
+  problem: 'tadsf aswead'
+  date_completed: '2009-03-18 15:57:00'
+  release_id: '4'
+  status_id: '2'
+  queue_id: '1'
+  created: '2009-03-10 11:26:45'
+  modified: '2009-03-10 15:57:43'
+  user_id: 1
+-
+  id: '4'
+  title: saifuajsdfs
+  problem: sdfashsfddfsdf
+  date_completed: '2009-03-10 12:49:00'
+  release_id: '1'
+  status_id: '1'
+  queue_id: '1'
+  created: '2009-03-10 11:34:17'
+  modified: '2009-03-10 12:49:10'
+  user_id: 2
+-
+  id: '5'
+  title: blah
+  problem: 'Test for having default status, user and queue added to a ticket'
+  date_completed: null
+  release_id: null
+  status_id: '1'
+  queue_id: null
+  created: '2009-03-11 00:33:35'
+  modified: '2009-03-11 00:33:35'
+  user_id: 2
+-
+  id: '6'
+  title: blah
+  problem: 'Test for having default status, user and queue added to a ticket'
+  date_completed: null
+  release_id: null
+  status_id: '1'
+  queue_id: null
+  created: '2009-03-11 00:36:19'
+  modified: '2009-03-11 00:36:19'
+  user_id: 2
+-
+  id: '7'
+  title: blah
+  problem: 'Test for having default status, user and queue added to a ticket'
+  date_completed: null
+  release_id: null
+  status_id: '1'
+  queue_id: null
+  created: '2009-03-11 00:39:21'
+  modified: '2009-03-11 00:39:21'
+  user_id: 3
+-
+  id: '8'
+  title: blah
+  problem: 'Test for having default status, user and queue added to a ticket'
+  date_completed: null
+  release_id: null
+  status_id: '1'
+  queue_id: '1'
+  created: '2009-03-11 00:40:06'
+  modified: '2009-03-11 00:40:06'
+  user_id: 3
+-
+  id: '9'
+  title: test
+  problem: "this is a test ticket"
+  date_completed: null
+  release_id: null
+  status_id: '1'
+  queue_id: '1'
+  created: '2009-03-11 10:32:28'
+  modified: '2009-03-11 10:32:28'
+  user_id: 3

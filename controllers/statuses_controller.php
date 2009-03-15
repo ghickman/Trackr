@@ -1,10 +1,6 @@
 <?php
 class StatusesController extends AppController {
 	var $name = 'Statuses';
-    
-	function beforeFilter() {
-		$this->Auth->allow('*');
-	}
 	
 	function index() {
 		$this->Status->recursive = 0;
