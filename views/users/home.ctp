@@ -1,7 +1,7 @@
 <?php
-echo $user;
-pr($group['Group']['queue_id']);
-pr($queue);
+//echo $user;
+//pr($group['Group']['queue_id']);
+//pr($group['Ticket']);
 //pr($test);
 //pr($tickets);
 ?>
@@ -16,7 +16,7 @@ pr($queue);
 	<?php foreach($tickets as $ticket):?>
 		<li>
 			<ul>
-				<li class="ticket"><?php $html->link($ticket['Ticket']['title'], array('controller'=>'tickets', 'action'=>'view', $ticket['Ticket']['id']));?></li>
+				<li class="ticket"><?php echo $html->link($ticket['Ticket']['title'], array('controller'=>'tickets', 'action'=>'view', $ticket['Ticket']['id']));?></li>
 				<li class="ticket"><?php echo $ticket['Ticket']['problem'];?></li>
 				<li class="ticket"><?php echo $ticket['Status']['name'];?></li>
 			</ul>

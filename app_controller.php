@@ -1,7 +1,7 @@
 <?php
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
-    var $components = array('Auth', 'Acl');
+    var $components = array('Auth', 'Acl', 'DebugKit.Toolbar');
 	
     function beforeFilter() {
         $this->Auth->authorize = 'actions';

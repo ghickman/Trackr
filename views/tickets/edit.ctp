@@ -1,4 +1,7 @@
 <div class="tickets form">
+<?php
+pr($releases);
+?>
 <?php echo $form->create('Ticket');?>
 	<fieldset>
  		<legend><?php __('Edit Ticket');?></legend>

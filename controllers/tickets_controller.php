@@ -2,21 +2,6 @@
 class TicketsController extends AppController {
 	var $name = 'Tickets';
 	var $components = array('Twitter');
-    
-	function index() {
-		$this->Ticket->recursive = 0;
-		$this->set('tickets', $this->paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash('Invalid Ticket.');
-			$this->redirect(array('action'=>'index'));
-		}
-		$ticket = $this->Ticket->read(null, $id);
-		$comments = $this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id)));
-		$this->set(compact('ticket', 'comments'));
-	}
 	
 	function __build_twitter_credentials($queue) {
 	    $this->Twitter->username = Configure::read('Twitter.'.$queue.'.username');
@@ -38,6 +23,21 @@ class TicketsController extends AppController {
 	            break;
 	    }
 	    return $message;
+	}
+    
+	function index() {
+		$this->Ticket->recursive = 0;
+		$this->set('tickets', $this->paginate());
+	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash('Invalid Ticket.');
+			$this->redirect(array('action'=>'index'));
+		}
+		$ticket = $this->Ticket->read(null, $id);
+		$comments = $this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id)));
+		$this->set(compact('ticket', 'comments'));
 	}
 
 	function add() {
