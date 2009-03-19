@@ -70,7 +70,6 @@ class TicketsController extends AppController {
     	    
 		    //build array comparative to $this->data and compare
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
-    		    //echo 'success! A change.';
     		    
     		    //$this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
@@ -95,7 +94,7 @@ class TicketsController extends AppController {
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'Release.date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('complete', 'queues', 'releases', 'statuses'));
+		$this->set(compact('queues', 'releases', 'statuses'));
 	}
 
 	function delete($id = null) {
