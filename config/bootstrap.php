@@ -42,7 +42,7 @@
  */
 //EOF
 $pluginPaths = array(
-    '/opt/cake_plugins/',
+    '/opt/cake_extras/cake_plugins/',
 );
 Configure::load('twitter');
 ?>
