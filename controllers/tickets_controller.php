@@ -71,13 +71,13 @@ class TicketsController extends AppController {
 		    //build array comparative to $this->data and compare
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
     		    
-    		    //$this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
+    		    $this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->setFlash('The Ticket has been saved');
-    				/*if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title']))) {
+    				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title']))) {
     			        $this->Session->setFlash('An error occurred while trying to tweet');
     			        //logs!
-    			    }*/
+    			    }
     				$this->redirect(array('action'=>'index'));
     			} else {
     				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
