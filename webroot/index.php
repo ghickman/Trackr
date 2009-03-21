@@ -57,7 +57,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH', DS.'opt'.DS.'cakePHP');
+		define('CAKE_CORE_INCLUDE_PATH', DS.'opt'.DS.'cake');
 	}
 
 /**
