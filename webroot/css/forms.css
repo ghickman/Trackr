@@ -1,47 +1,105 @@
-/*Forms*/
+/* Forms */
 form {
-	clear 		: both;
+	clear: both;
 	margin-right: 20px;
-	padding 	: 0;
+	padding: 0;
+	width: 80%;
+}
+
+fieldset {
+	border: 1px solid #ccc;
+	margin-top: 30px;
+	padding: 16px 20px;
+}
+
+fieldset legend {
+	background:#fff;
+	color: #e32;
+	font-size: 160%;
+	font-weight: bold;
+}
+
+fieldset fieldset {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	padding: 16px 0;
+}
+
+fieldset fieldset legend {
+	font-size: 120%;
+	font-weight: normal;
+	margin-left: 20px;
+}
+
+fieldset fieldset div {
+	clear: left;
+	margin: 0 20px;
 }
 
 form div {
-	clear 		: both;
+	clear: both;
 	margin-bottom: 1em;
-	padding 	: 0.5em;
+	padding: .5em;
 	vertical-align: text-top;
 }
 
 form div.input {
-	color 		: #444;
+	color: #444;
+}
+
+form div.required {
+	color: #333;
+	font-weight: bold;
 }
 
 form div.submit {
-	border 		: 0 none;
-	clear 		: both;
-	width		: 40px;
-	margin-left : 0px;
-	margin-top  : 10px;
+	border: 0;
+	clear: both;
+	margin-top: 10px;
+	margin-left: 140px;
 }
 
-form legend a {
-    text-decoration: none;
-    color       : #000000;
+label {
+	display: block;
+	font-size: 110%;
+	padding-right: 20px;
 }
 
 input, textarea {
-	clear 		: both;
-	display 	: block;
-	font-family : "frutiger linotype","lucida grande","verdana",sans-serif;
-	font-size 	: 100%;
-	padding 	: 2px;
-	width 		: 100%;
+	clear: both;
+	display: block;
+	font-size: 140%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 2px;
+	width: 100%;
 }
 
-input[type="submit"] {
-	display 	: inline;
-	font-size 	: 110%;
-	padding 	: 2px 5px;
+select {
+	clear: both;
+	font-size: 120%;
+	vertical-align: text-bottom;
+}
+
+select[multiple=multiple] {
+	width: 100%;
+}
+
+option {
+	font-size: 120%;
+	padding: 0 3px;
+}
+
+input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 0px 6px 7px 2px;
+	width: auto;
+}
+
+input[type=submit] {
+	display: inline;
+	font-size: 110%;
+	padding: 2px 5px;
+	width: auto;
 	vertical-align: bottom;
-	width 		: auto;
 }

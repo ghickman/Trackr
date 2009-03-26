@@ -44,7 +44,7 @@ foreach ($queues as $queue):
 			<?php echo $queue['Queue']['modified']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $queue['Queue']['id'])); ?>
+			<?php echo $html->link(__('View', true), array('action'=>'view', $queue['Queue']['slug'])); ?>
 			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $queue['Queue']['id'])); ?>
 			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $queue['Queue']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $queue['Queue']['id'])); ?>
 		</td>

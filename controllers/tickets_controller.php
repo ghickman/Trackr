@@ -10,7 +10,7 @@ class TicketsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash('Invalid Ticket.');
+			$this->Session->write('flash', array('Invalid Ticket', 'failure'));
 			$this->redirect(array('action'=>'index'));
 		}
 		$ticket = $this->Ticket->read(null, $id);
@@ -37,16 +37,16 @@ class TicketsController extends AppController {
 			$this->__build_twitter_credentials($queue['Queue']['twitter_username']);
 		    
 		    if($this->Ticket->save($this->data)) {
-		        $this->Session->setFlash('The Ticket has been saved');
+		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
 			    
 			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title']))) {
-			        $this->Session->setFlash('An error occurred while trying to tweet');
+			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
 			        //logs!
 			    }
 			    
 			    $this->redirect(array('action' => 'index'));
 		    } else {
-		        $this->Session->setFlash('The Ticket could not be saved. Please, try again.');
+		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
 		}
 		$applications = $this->Ticket->Application->find('list');
@@ -69,9 +69,11 @@ class TicketsController extends AppController {
 		    $this->data['Ticket'] = $this->__parse_date_completed($this->data['Ticket'], $ticket['Ticket']);
     	    
 		    //build array comparative to $this->data and compare
+		    //$is_different = ;
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
-    		    
-    		    $this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
+    	        
+    		    //if($is_different)
+    		    /*$this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->setFlash('The Ticket has been saved');
     				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title']))) {
@@ -81,7 +83,8 @@ class TicketsController extends AppController {
     				$this->redirect(array('action'=>'index'));
     			} else {
     				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
-    			}
+    			}*/
+    			echo 'different, saved';
     	    } else {
     	        $this->redirect(array('action'=>'index'));
     	    }
@@ -97,13 +100,16 @@ class TicketsController extends AppController {
 		$this->set(compact('queues', 'releases', 'statuses'));
 	}
 
+    /** delete
+     * 
+     */
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash('Invalid id for Ticket');
+			$this->Session->write('flash', array('Invalid id for Ticket', 'failure'));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Ticket->del($id)) {
-			$this->Session->setFlash('Ticket deleted');
+			$this->Session->write('flash', array('Ticket deleted', 'success'));
 			$this->redirect(array('action'=>'index'));
 		}
 	}
@@ -126,7 +132,7 @@ class TicketsController extends AppController {
 	    $this->Twitter->username = Configure::read('Twitter.'.$queue.'.username');
 	    $this->Twitter->password = Configure::read('Twitter.'.$queue.'.password');
 	    if (!$this->Twitter->account_verify_credentials()) {
-	        $this->Session->setFlash('A error occured with your twitter account credentials');
+	        $this->Session->write('flash', array('A error occured with your twitter account credentials', 'failure'));
 	        //logs!
 	        $this->redirect(array('action' => 'index'));
 	    }
@@ -160,11 +166,17 @@ class TicketsController extends AppController {
 	    
 	    //just for testing - need to make this reflect the current one
 	    $form['release_id'] = null;
-	    
+	    echo 'record';
+	    pr($record);
+	    echo 'form';
+	    pr($form);
+	    echo 'form, record';
+	    pr(array_diff($form, $record));
+	    echo 'record, form';
+	    pr(array_diff($record, $form));
 	    //do both ways around so can compare when form is different to record
 	    //are the arrays different?
 	    if(array_diff($form, $record) | array_diff($record, $form)) {
-	    //if(array_diff($record, $form)) {
 	        return true; //yes
 	    } else {
 	        return false; //no

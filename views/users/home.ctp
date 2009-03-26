@@ -23,13 +23,4 @@
 		</li>
 	<?php endforeach;?>
 </ul>
-<table>
-	<tr>
-		<th></th>
-		<th></th>
-	</tr>
-	<tr>
-		<td></td>
-	</tr>
-</table>
 </div>

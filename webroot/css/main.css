@@ -1,7 +1,7 @@
-/* reset CSS for all browsers*/
+/*reset css for all browsers*/
 * {
+	margin:0;
 	padding:0;
-    margin:0;
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address {margin:0;}
@@ -16,19 +16,71 @@ select option {padding:0 5px;}
 .clr {clear:both; height:1px; font-size:1px; line-height:1px;}
 a img {border:none;}
 
-
 /* mac hide\*/
 html, body {
 	height: 100%
 }
 /* end hide */
 
-html, body {
-    font-size   : 13px;
-    font-family : "Lucida Grande" "Trebuchet MS";
+/* General Style Info */
+body {
+    background: #003d4c;
+	color: #fff;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:90%;
+	margin: 0;
 }
 
-.wrapper {
-	width  		: 999px;
-	margin 		: 0 auto;
+a {
+	/*background:#fff;*/
+	color: #003d4c;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	background:#003d4c;
+	color: #fff;
+	text-decoration:none;
+}
+
+a img {
+	border:none;
+}
+
+h1, h2, h3, h4 {
+	font-weight: normal;
+}
+
+h1 {
+	background:#fff;
+	color: #003d4c;
+	font-size: 100%;
+	margin: 0.1em 0;
+}
+
+h2 {
+	background:#fff;
+	color: #e32;
+	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
+	font-size: 190%;
+	margin: 0.3em 0;
+	padding-top: 0.4em;
+}
+
+h3 {
+	color: #993;
+	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
+	font-size: 165%;
+	padding-top: 1.5em;
+}
+
+h4 {
+	color: #993;
+	font-weight: normal;
+	padding-top: 0.5em;
+}
+
+ul, li {
+	margin: 0 12px;
 }

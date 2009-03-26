@@ -12,7 +12,6 @@
 		echo $form->input('queue_id');
 		echo $form->label('Complete?');
 		echo $form->checkbox('Ticket.date_completed');
-		
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

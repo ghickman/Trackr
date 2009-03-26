@@ -1,59 +1,20 @@
-<?php 
-pr($ticket);
-//foreach($comments as $comment) {
-//	echo $comment
-//}
-?>
+<?php //pr($ticket);?>
 
-
-
-
-
-<div class="tickets view">
-<h2><?php  __('Ticket');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['title']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Problem'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['problem']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('date Completed'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['date_completed']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Release Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['release_id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Status Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['status_id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Queue Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['queue_id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $ticket['Ticket']['modified']; ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="actions">
+	<ul>
+		<li><?php echo $html->link('Edit Ticket', array('action'=>'edit', $ticket['Ticket']['id'])); ?></li>
+		<li><?php echo $html->link('Queue', array('controller'=>'queues','action'=>'view', $ticket['Queue']['slug']));?></li>
+		<li><?php echo $html->link('New Ticket', array('action'=>'add'));?></li>
+	</ul>
 </div>
+
+<h2 class="ticket_title"><?php echo $ticket['Ticket']['title'];?></h2>
+<p>Raised by: <?php echo $ticket['User']['username'];?></p>
+<br />
+<p><?php echo $ticket['Ticket']['problem'];?></p>
+
+<h2>Comments</h2>
+<?php echo $html->link('New Comment', array('controller'=>'comments', 'action'=>'add'));?>
 
 <?php
 foreach($comments as $comment) {
@@ -64,11 +25,3 @@ foreach($comments as $comment) {
 	echo "<br />";
 }
 ?>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link(__('Edit Ticket', true), array('action'=>'edit', $ticket['Ticket']['id'])); ?></li>
-		<li><?php echo $html->link(__('Delete Ticket', true), array('action'=>'delete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $ticket['Ticket']['id'])); ?></li>
-		<li><?php echo $html->link(__('List Tickets', true), array('action'=>'index')); ?></li>
-		<li><?php echo $html->link(__('New Ticket', true), array('action'=>'add')); ?></li>
-	</ul>
-</div>
