@@ -1,0 +1,10 @@
+UP:
+  rename_field:
+    users:
+      username: name
+      slug: username
+DOWN:
+  rename_field:
+    users:
+      username: slug
+      name: username

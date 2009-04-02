@@ -21,23 +21,25 @@
 <body>
 	<div id="container" class="wrapper">
 		<div id="header">
-			<?php echo $html->link('Home', array('controller' => 'users', 'action' => 'home'));?>
-			<?php echo $html->link('New Ticket', array('controller' => 'tickets', 'action' => 'add'));?>
-			
-			
-			<div id="login_logout_controls">
-				Logged in as: <?php echo $session->read('Auth.User.username');?>
-				<?php echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
-			</div>
+			<?php if($session->read('Auth.User')):?>
+			<ul id="menu">
+				<li><?php echo $html->link('Home', array('controller'=>'users', 'action'=>'home'));?></li>
+				<li><?php echo $html->link('New Ticket', array('controller'=>'tickets', 'action'=>'add'));?></li>
+			</ul>
+			<?php endif;?>
 		</div>
 		<div id="content">
 
-			<?php $session->flash(); ?>
+			<?php $session->flash('auth');?>
+			<?php echo $mysession->flash();?>
 
 			<?php echo $content_for_layout; ?>
 
 		</div>
 		<div id="footer">
+			<?php if($session->read('Auth.User')):?>
+			<p>Logged in as: <?php echo $session->read('Auth.User.name');?> | <?php echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></p>
+			<?php endif;?>
 		</div>
 	</div>
 	<?php echo $cakeDebug; ?>

@@ -14,6 +14,10 @@ class AclSetupController extends AppController {
         $this->Auth->allow('*');
     }
     
+    function complete() {
+        $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/complete');
+    }
+    
     function administrators_build() {
         $this->Acl->allow(array('Group'=>array('id'=>1)), 'controllers');
     }
@@ -112,6 +116,7 @@ class AclSetupController extends AppController {
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/edit');
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/view');
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/index');
+        $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/complete');
         
         $users = $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/view');
         $users .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/index');

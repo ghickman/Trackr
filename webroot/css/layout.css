@@ -9,31 +9,49 @@
 }
 
 #header{
-	padding: 10px 20px;
 	background: #999999;
+	height: 40px;
 }
 
-#header h1 {
-	background: #003d4c url('../img/cake.icon.gif') no-repeat left;
-	color: #fff;
-	padding: 0px 30px;
+#header ul {
+    padding-top: 11px;
 }
 
-#header h1 a {
+#header ul li {
+	display:inline;
+}
+
+#header ul li a {
 	/*color: #fff;
 	background: #003d4c;*/
-	font-weight: normal;
+	font-weight: bold;
 	text-decoration: none;
+	padding: 5px 10px 5px 10px;
 }
 
-#header h1 a:hover {
+#header a:hover {
 	/*color: #fff;
 	/*background: #003d4c;*/
 	text-decoration: none;
 }
 
-#login_logout_controls {
-    float: right;
+/* Menu Items */
+div#menu ul li {
+	float 		: left;
+	list-style	: none;
+	display     : inline;
+	margin 		: 133px 0 6px 0px;
+}
+
+li.menu_item a {
+	height 		: 28px;
+	color 		: #FFF;
+	font-size	: 18px;
+	font-family : Verdana, sans-serif;
+	text-transform: capitalize;
+	text-decoration: none;
+	outline		: none;
+	padding 	: 6px 10px 9px 10px;
 }
 
 #content{
@@ -48,5 +66,14 @@
     background: #003d4c;
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
+	text-align: center;
+}
+
+#footer a {
+    color: #fff;
+    font-weight: normal;
+}
+
+#home_queue {
+    float: right;
 }

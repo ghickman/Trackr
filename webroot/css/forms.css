@@ -1,9 +1,7 @@
 /* Forms */
 form {
 	clear: both;
-	margin-right: 20px;
 	padding: 0;
-	width: 80%;
 }
 
 fieldset {
@@ -102,4 +100,8 @@ input[type=submit] {
 	padding: 2px 5px;
 	width: auto;
 	vertical-align: bottom;
+}
+
+#login {
+    margin: 0 100px 0 100px;
 }

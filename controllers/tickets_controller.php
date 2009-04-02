@@ -3,11 +3,17 @@ class TicketsController extends AppController {
 	var $name = 'Tickets';
 	var $components = array('Twitter');
     
+    /** index
+     *
+     */
 	function index() {
 		$this->Ticket->recursive = 0;
 		$this->set('tickets', $this->paginate());
 	}
-
+    
+    /** view
+     *
+     */
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->write('flash', array('Invalid Ticket', 'failure'));
@@ -33,18 +39,17 @@ class TicketsController extends AppController {
 			
 			//add current user
 			$this->data['Ticket']['user_id'] = $this->Auth->user('id');
-			
-			$this->__build_twitter_credentials($queue['Queue']['twitter_username']);
 		    
 		    if($this->Ticket->save($this->data)) {
 		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
 			    
+			    $this->__build_twitter_credentials($queue['Queue']['twitter_username']);
 			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title']))) {
 			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
-			        //logs!
+			        $this->log('An add-ticket tweet could not be sent', 'twitter');
 			    }
 			    
-			    $this->redirect(array('action' => 'index'));
+			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
@@ -60,7 +65,7 @@ class TicketsController extends AppController {
 	function edit($id = null) {		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid Ticket');
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 		
 		$ticket = $this->Ticket->read(null, $id);
@@ -69,24 +74,24 @@ class TicketsController extends AppController {
 		    $this->data['Ticket'] = $this->__parse_date_completed($this->data['Ticket'], $ticket['Ticket']);
     	    
 		    //build array comparative to $this->data and compare
-		    //$is_different = ;
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
     	        
     		    //if($is_different)
-    		    /*$this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
+    		    $this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
-    				$this->Session->setFlash('The Ticket has been saved');
+    				$this->Session->write('flash', array('The Ticket has been saved', 'success'));
     				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title']))) {
-    			        $this->Session->setFlash('An error occurred while trying to tweet');
-    			        //logs!
+    			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
+    			        $this->log('An edit-ticket tweet could not be sent', 'twitter');
     			    }
-    				$this->redirect(array('action'=>'index'));
+    				$this->redirect(array('controller'=>'users', 'action'=>'home'));
     			} else {
-    				$this->Session->setFlash('The Ticket could not be saved. Please, try again.');
-    			}*/
-    			echo 'different, saved';
+    				$this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
+    			}
+    			//echo 'different, saved';
     	    } else {
-    	        $this->redirect(array('action'=>'index'));
+    	        //echo 'same, ignored';
+    	        $this->redirect(array('controller'=>'users', 'action'=>'home'));
     	    }
 		}
 		
@@ -99,10 +104,10 @@ class TicketsController extends AppController {
 		$queues = $this->Ticket->Queue->find('list');
 		$this->set(compact('queues', 'releases', 'statuses'));
 	}
-
-    /** delete
-     * 
-     */
+	
+	/** delete
+	* 
+	*/
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->write('flash', array('Invalid id for Ticket', 'failure'));
@@ -113,6 +118,26 @@ class TicketsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
+
+    /** complete
+     * 
+     */
+    function complete($id=null) {
+        if(!$id) {
+            $this->Session->write('flash', array('Incorrect Ticket id', 'failure'));
+            $this->redirect($this->referer());
+        }
+        $ticket = $this->Ticket->read(null, $id);
+        $ticket['Ticket']['date_completed'] = date('Y-m-d H:i:s');
+        if($this->Ticket->save($ticket)) {
+            $this->Session->write('flash', array('Ticket '.$ticket['Ticket']['id'].' completed', 'success'));
+            $this->redirect($this->referer());
+        } else {
+            $this->Session->write('flash', array('Ticket '.$ticket['Ticket']['id'].' could not be completed', 'failure'));
+            $this->redirect($this->referer());
+        }
+        
+    }
     
     /** autoComplete
      * 
@@ -133,8 +158,7 @@ class TicketsController extends AppController {
 	    $this->Twitter->password = Configure::read('Twitter.'.$queue.'.password');
 	    if (!$this->Twitter->account_verify_credentials()) {
 	        $this->Session->write('flash', array('A error occured with your twitter account credentials', 'failure'));
-	        //logs!
-	        $this->redirect(array('action' => 'index'));
+	        $this->redirect($this->referer());
 	    }
 	}
 	
@@ -166,14 +190,14 @@ class TicketsController extends AppController {
 	    
 	    //just for testing - need to make this reflect the current one
 	    $form['release_id'] = null;
-	    echo 'record';
+	    /*echo 'record';
 	    pr($record);
 	    echo 'form';
 	    pr($form);
 	    echo 'form, record';
 	    pr(array_diff($form, $record));
 	    echo 'record, form';
-	    pr(array_diff($record, $form));
+	    pr(array_diff($record, $form));*/
 	    //do both ways around so can compare when form is different to record
 	    //are the arrays different?
 	    if(array_diff($form, $record) | array_diff($record, $form)) {

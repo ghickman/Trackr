@@ -74,6 +74,9 @@ class UsersController extends AppController {
 		$this->set(compact('tickets','groups'));
 	}
 
+    /** delete
+     * 
+     */
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid id for User');
@@ -100,13 +103,15 @@ class UsersController extends AppController {
 	}
 	
 	function home() {
-	    $test = $this->Session->read();
 	    $user = $this->Session->read('Auth.User.id');
 	    $group = $this->User->read(null, $this->Session->read('Auth.User.id'));
 	    $queue = $this->User->Group->Queue->find('list', array('conditions'=>array('Queue.id'=>$group['Group']['queue_id'])));
 	    $queue = array_keys($queue);
-	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user)));
-	    $this->set(compact('user', 'tickets', 'group', 'queue', 'test'));
+	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user, 'Ticket.date_completed'=>null)));
+	    for($i=0;$i<count($tickets);$i++) {
+	        $tickets[$i]['Ticket']['problem'] = $this->string_slice($tickets[$i]['Ticket']['problem']);
+	    }
+	    $this->set(compact('user', 'tickets', 'group', 'queue'));
 	}
 }
 ?>
