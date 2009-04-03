@@ -132,6 +132,14 @@ class TicketsController extends AppController {
         $ticket['Ticket']['date_completed'] = date('Y-m-d H:i:s');
         if($this->Ticket->save($ticket)) {
             $this->Session->write('flash', array('Ticket '.$ticket['Ticket']['id'].' completed', 'success'));
+            
+            $queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.id'=>$ticket['Ticket']['queue_id']), 'fields'=>array('twitter_username')));
+            $this->__build_twitter_credentials($queue['Queue']['twitter_username']);
+		    if(!$this->Twitter->status_update($this->__tweet('complete', $ticket['Ticket']['title'], $ticket['Ticket']['id']))) {
+		        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
+		        $this->log('An complete-ticket tweet could not be sent', 'twitter');
+		    }
+            
             $this->redirect($this->referer());
         } else {
             $this->Session->write('flash', array('Ticket '.$ticket['Ticket']['id'].' could not be completed', 'failure'));
@@ -173,6 +181,9 @@ class TicketsController extends AppController {
 	            break;
 	        case "edit":
 	            $message = "Ticket Edited: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
+	            break;
+	        case "complete":
+	            $message = "Ticket Completed: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
 	            break;
 	    }
 	    return $message;
