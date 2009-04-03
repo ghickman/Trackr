@@ -1,5 +1,5 @@
 <div id="home_queue">
-	<?php echo $html->link('View Queue', array('controller'=>'queues', 'action'=>'view', $queue[0]));?>
+	<?php //echo $html->link('View Queue', array('controller'=>'queues', 'action'=>'view', $queue[0]));?>
 </div>
 
 <div id="ticket_list">

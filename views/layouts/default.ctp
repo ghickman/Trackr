@@ -26,9 +26,9 @@
 			<ul id="menu">
 				<li><?php echo $html->link('Home', array('controller'=>'users', 'action'=>'home'));?></li>
 				<li><?php echo $html->link('New Ticket', array('controller'=>'tickets', 'action'=>'add'));?></li>
-				<?php //if():?>
-					<li id="home_queue"><?php echo $html->link('Your Queue', array('controller'=>'queues', 'action'=>'view', $session->read('Auth.User.group_id')));?></li>
-				<?php //endif;?>
+				<?php if($session->check('queue')):?>
+					<li id="home_queue"><?php echo $html->link('Your Queue', array('controller'=>'queues', 'action'=>'view', $session->read('queue')));?></li>
+				<?php endif;?>
 			</ul>
 			<?php endif;?>
 		</div>

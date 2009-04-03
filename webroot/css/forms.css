@@ -66,7 +66,7 @@ label {
 input, textarea {
 	clear: both;
 	display: block;
-	font-size: 140%;
+	font-size: 100%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 	padding: 2px;
 	width: 100%;
@@ -100,6 +100,7 @@ input[type=submit] {
 	padding: 2px 5px;
 	width: auto;
 	vertical-align: bottom;
+	margin: -40px 0 0 -130px;
 }
 
 #login {
