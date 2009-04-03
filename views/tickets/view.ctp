@@ -12,7 +12,7 @@
 </div>
 <ul id="comments_block">
 	<?php foreach($comments as $comment):?>
-		<li class="comment_block">
+		<li class="comment_block" id=<?php echo 'comment-'.$comment['Comment']['id'];?>>
 			<p class="divider">.........................................................................................................................</p>
 			<p class="comment"><?php echo $comment['Comment']['text'];?></p>
 			<p class="comment_info"><?php echo "Posted by " . $comment['User']['name'] . " on " . $time->niceShort($comment['Comment']['created']);?></p>

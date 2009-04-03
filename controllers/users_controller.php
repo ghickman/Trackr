@@ -131,7 +131,7 @@ class UsersController extends AppController {
 	    $group = $this->User->read(null, $this->Session->read('Auth.User.id'));
 	    $queue = $this->User->Group->Queue->find('all', array('conditions'=>array('Queue.id'=>$group['Group']['queue_id'])));
 	    $this->Session->write('queue', $queue[0]['Queue']['id']);
-	    
+	    //echo $queue[0]['Queue']['id'];
 	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user, 'Ticket.date_completed'=>null)));
 	    for($i=0;$i<count($tickets);$i++) {
 	        $tickets[$i]['Ticket']['problem'] = $this->string_slice($tickets[$i]['Ticket']['problem']);

@@ -50,16 +50,19 @@ class AppController extends Controller {
 	* 
 	* @return $short_url
 	*/
-	function bitly($controller=null, $action=null, $id=null) {
-	    if(!$controller || !$action || $id) {
+	function bitly($controller, $action, $id) {
+	    /*echo $controller;
+	    echo $action;
+	    echo $id;
+	    if(!$controller | !$action | !$id) {*/
 	        $url = 'http://localhost/~madnashua/tellann/'.$controller.'/'.$action.'/'.$id;
-	        echo $url;
 	        $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".$url."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
 	        $input = json_decode($input, true);
 	        return $input['results'][$url]['shortUrl'];
-        } else { 
+        /*} else {
+            $this->Session->write('flash', array('An error occurred with bitlying your link', 'failure'));
             return null;
-        }
+        }*/
 	}
 }
 ?>

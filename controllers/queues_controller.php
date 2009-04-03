@@ -7,12 +7,12 @@ class QueuesController extends AppController {
 		$this->set('queues', $this->paginate());
 	}
 
-	function view($slug = null) {
-		if (!$slug) {
+	function view($id=null) {
+		if (!$id) {
 			$this->Session->write('flash', array('Invalid Queue', 'failure'));
 			$this->redirect(array('action'=>'index'));
 		}
-		$queue = $this->Queue->findBySlug($slug);
+		$queue = $this->Queue->read(null, $id);
 		$tickets = $this->Queue->Ticket->find('all', array('conditions'=>array('Ticket.queue_id'=>$queue['Queue']['id'])));
 		$this->set(compact('queue', 'tickets'));
 	}

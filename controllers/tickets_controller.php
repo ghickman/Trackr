@@ -43,14 +43,14 @@ class TicketsController extends AppController {
 		    
 		    if($this->Ticket->save($this->data)) {
 		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
-			    
+                
 			    $this->__build_twitter_credentials($queue['Queue']['twitter_username']);
-			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title'], $this->data['Ticket']['queue_id']))) {
+			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title'], $this->Ticket->id))) {
 			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
 			        $this->log('An add-ticket tweet could not be sent', 'twitter');
 			    }
 			    
-			    //$this->redirect(array('controller'=>'users', 'action'=>'home'));
+			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
@@ -169,10 +169,10 @@ class TicketsController extends AppController {
 	function __tweet($action, $ticket, $id=null) {
 	    switch($action){
 	        case "add":
-	            $message = "New Ticket: ".$ticket." - ".$this->bitly('queues', 'view', $id);
+	            $message = "New Ticket: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
 	            break;
 	        case "edit":
-	            $message = "Ticket Edited: ".$ticket." - ".$this->bitly(Controller::name, $action, $id);
+	            $message = "Ticket Edited: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
 	            break;
 	    }
 	    return $message;

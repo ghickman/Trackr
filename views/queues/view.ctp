@@ -1,6 +1,5 @@
 <div class="queues view">
-<fieldset>
-	<legend>Current Tickets</legend>
+	<h2><?php echo $queue['Queue']['name'];?></h2>
 	<table>
 		<tr>
 			<th>Ticket</th>
@@ -13,4 +12,4 @@
 			</tr>
 		<?php endforeach;?>
 	</table>
-</fieldset>
+</div>
