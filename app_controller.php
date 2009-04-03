@@ -44,5 +44,22 @@ class AppController extends Controller {
         }
 	    return $str;
 	}
+	
+	/**
+	* Constructs a url from the controller, action and id of the calling action and returns a shortened url from bit.ly
+	* 
+	* @return $short_url
+	*/
+	function bitly($controller=null, $action=null, $id=null) {
+	    if(!$controller || !$action || $id) {
+	        $url = 'http://localhost/~madnashua/tellann/'.$controller.'/'.$action.'/'.$id;
+	        echo $url;
+	        $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".$url."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
+	        $input = json_decode($input, true);
+	        return $input['results'][$url]['shortUrl'];
+        } else { 
+            return null;
+        }
+	}
 }
 ?>

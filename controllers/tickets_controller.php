@@ -45,12 +45,12 @@ class TicketsController extends AppController {
 		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
 			    
 			    $this->__build_twitter_credentials($queue['Queue']['twitter_username']);
-			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title']))) {
+			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title'], $this->data['Ticket']['queue_id']))) {
 			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
 			        $this->log('An add-ticket tweet could not be sent', 'twitter');
 			    }
 			    
-			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
+			    //$this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
@@ -81,7 +81,7 @@ class TicketsController extends AppController {
     		    $this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->write('flash', array('The Ticket has been saved', 'success'));
-    				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title']))) {
+    				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title'], $id))) {
     			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
     			        $this->log('An edit-ticket tweet could not be sent', 'twitter');
     			    }
@@ -145,7 +145,7 @@ class TicketsController extends AppController {
      */
     function autoComplete() {
         Configure::write('debug', 0);
-        $this->layout = 'ajax';
+        //$this->layout = 'ajax';
 
         $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
         $this->set('applications', $applications);
@@ -166,13 +166,13 @@ class TicketsController extends AppController {
 	/** __tweet
 	 * 
 	 */
-	function __tweet($name, $ticket) {
-	    switch($name){
+	function __tweet($action, $ticket, $id=null) {
+	    switch($action){
 	        case "add":
-	            $message = "New Ticket: ".$ticket;
+	            $message = "New Ticket: ".$ticket." - ".$this->bitly('queues', 'view', $id);
 	            break;
 	        case "edit":
-	            $message = "Ticket Edited: ".$ticket;
+	            $message = "Ticket Edited: ".$ticket." - ".$this->bitly(Controller::name, $action, $id);
 	            break;
 	    }
 	    return $message;
