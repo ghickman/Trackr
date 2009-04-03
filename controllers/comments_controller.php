@@ -23,9 +23,17 @@ class CommentsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Comment->create();
 			$this->data['Comment']['user_id'] = $this->Auth->user('id');
-			
+			$queue = $this->data['Comment']['queue_id'];
+			unset($this->data['Comment']['queue_id']);
 			if ($this->Comment->save($this->data)) {
-				$this->Session->write('flash', array('Your Comment has been saved...', 'success'));
+				$this->Session->write('flash', array('Your Comment has been saved', 'success'));
+				/*
+                $this->__build_twitter_credentials($queue);
+    		    if(!$this->Twitter->status_update($this->__tweet('complete', $ticket['Ticket']['title'], $ticket['Ticket']['id']))) {
+    		        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
+    		        $this->log('An complete-ticket tweet could not be sent', 'twitter');
+    		    }*/
+    		    
 				$this->redirect($this->referer());
 			} else {
 				$this->Session->write('flash', array('Your Comment could not be saved. Please, try again', 'failure'));

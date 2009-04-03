@@ -5,10 +5,13 @@
 
 <h3 class="ticket_view">Comments</h3>
 <div class="comments_form">
-<?php echo $form->create('Comment');?>
-	<?php echo $form->input('text', array('label'=>'', 'default'=>'Add a comment'));?>
-	<?php echo $form->hidden('ticket_id', array('default'=>$id));?>
-<?php echo $form->end('Submit');?>
+<?php
+echo $form->create('Comment');
+	echo $form->input('text', array('label'=>'', 'default'=>'Add a comment'));
+	echo $form->hidden('ticket_id', array('default'=>$id));
+	echo $form->hidden('queue_id', array('default'=>$ticket['Ticket']['queue_id']));
+echo $form->end('Submit');
+?>
 </div>
 <ul id="comments_block">
 	<?php foreach($comments as $comment):?>
