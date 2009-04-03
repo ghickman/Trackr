@@ -1,0 +1,17 @@
+#content{
+	background: #fff;
+	clear: both;
+	color: #333;
+	padding: 10px 20px 40px 20px;
+	overflow: auto;
+}
+
+h2.ticket_title {
+    text-align: left;
+}
+
+.divider {
+    text-align: center;
+    color: #D0D0D0;
+    padding-bottom: 7px;
+}
