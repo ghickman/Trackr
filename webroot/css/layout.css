@@ -22,16 +22,12 @@
 }
 
 #header ul li a {
-	/*color: #fff;
-	background: #003d4c;*/
 	font-weight: bold;
 	text-decoration: none;
 	padding: 5px 10px 5px 10px;
 }
 
 #header a:hover {
-	/*color: #fff;
-	/*background: #003d4c;*/
 	text-decoration: none;
 }
 
@@ -76,4 +72,14 @@ li.menu_item a {
 
 #home_queue {
     float: right;
+}
+
+h2.ticket_title {
+    text-align: left;
+}
+
+.divider {
+    text-align: center;
+    color: #D0D0D0;
+    padding-bottom: 7px;
 }

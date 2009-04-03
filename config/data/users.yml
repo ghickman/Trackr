@@ -1,31 +1,31 @@
 -
   id: '1'
-  username: 'George Hickman'
-  slug: george_hickman
+  name: 'George Hickman'
+  username: george.hickman
   password: 3a63faa48a90c6f26e44457f1367599d8b481a91
   group_id: 1
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '2'
-  username: 'Matt Lee'
-  slug: matt_lee
+  name: 'Matt Lee'
+  username: matt.lee
   password: 3a63faa48a90c6f26e44457f1367599d8b481a91
   group_id: 2
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '3'
-  username: 'Rich Grundy'
-  slug: rich_grundy
+  name: 'Rich Grundy'
+  username: rich.grundy
   password: 3a63faa48a90c6f26e44457f1367599d8b481a91
   group_id: 3
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '4'
-  username: 'Poppy Lewis'
-  slug: poppy_lewis
+  name: 'Poppy Lewis'
+  username: poppy.lewis
   password: 3a63faa48a90c6f26e44457f1367599d8b481a91
   group_id: 1
   created: '2009-02-19 16:36:08'

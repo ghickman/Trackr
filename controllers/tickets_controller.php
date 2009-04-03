@@ -2,6 +2,7 @@
 class TicketsController extends AppController {
 	var $name = 'Tickets';
 	var $components = array('Twitter');
+	var $helpers = array('Time');
     
     /** index
      *
@@ -19,8 +20,26 @@ class TicketsController extends AppController {
 			$this->Session->write('flash', array('Invalid Ticket', 'failure'));
 			$this->redirect(array('action'=>'index'));
 		}
+		
+		if (!empty($this->data)) {
+			$this->Ticket->Comment->create();
+			$this->data['Comment']['user_id'] = $this->Auth->user('id');
+			$this->data['Comment']['ticket_id'] = $id;
+			
+			if ($this->Ticket->Comment->save($this->data)) {
+				$this->Session->write('flash', array('Your Comment has been saved', 'success'));
+				//$this->redirect($this->referer());
+			} else {
+				$this->Session->write('flash', array('Your Comment could not be saved. Please, try again', 'failure'));
+			}
+		}
+		
+		
+		
+		
+		$this->Session->write('ticket', $id);
 		$ticket = $this->Ticket->read(null, $id);
-		$comments = $this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id)));
+		$comments = array_reverse($this->Ticket->Comment->find('all', array('conditions'=>array('Comment.ticket_id'=>$id))));
 		$this->set(compact('ticket', 'comments'));
 	}
     

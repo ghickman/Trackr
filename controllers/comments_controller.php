@@ -7,27 +7,31 @@ class CommentsController extends AppController {
 		$this->set('comments', $this->paginate());
 	}
 
-	function view($id = null) {
+    /** view
+     * 
+     */
+    function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash('Invalid Comment.');
+			$this->Session->write('flash', array('Invalid Comment', 'failure'));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('comment', $this->Comment->read(null, $id));
 		
 	}
 
-	function add() {
+    function add() {
 		if (!empty($this->data)) {
 			$this->Comment->create();
+			$this->data['Comment']['user_id'] = $this->Auth->user('id');
+			$this->data['Comment']['ticket_id'] = $this->Session->read('ticket');
+			
 			if ($this->Comment->save($this->data)) {
-				$this->Session->setFlash('The Comment has been saved');
-				$this->redirect(array('action'=>'index'));
+				$this->Session->write('flash', array('Your Comment has been saved', 'success'));
+				$this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash('The Comment could not be saved. Please, try again.');
+				$this->Session->write('flash', array('Your Comment could not be saved. Please, try again', 'failure'));
 			}
 		}
-		$tickets = $this->Comment->Ticket->find('list');
-		$users = $this->Comment->User->find('list');
 		$this->set(compact('tickets', 'users'));
 	}
 

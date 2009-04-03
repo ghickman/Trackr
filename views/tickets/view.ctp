@@ -1,27 +1,24 @@
-<?php //pr($ticket);?>
-
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link('Edit Ticket', array('action'=>'edit', $ticket['Ticket']['id'])); ?></li>
-		<li><?php echo $html->link('Queue', array('controller'=>'queues','action'=>'view', $ticket['Queue']['slug']));?></li>
-		<li><?php echo $html->link('New Ticket', array('action'=>'add'));?></li>
-	</ul>
-</div>
-
-<h2 class="ticket_title"><?php echo $ticket['Ticket']['title'];?></h2>
-<p>Raised by: <?php echo $ticket['User']['username'];?></p>
+<h2 class="ticket_title" class="ticket_view"><?php echo $ticket['Ticket']['title'];?></h2><p class="edit"> - <?php echo $html->link('Edit', array('action'=>'edit', $ticket['Ticket']['id']));?></p>
+<p>Raised by: <?php echo $ticket['User']['name'];?></p>
 <br />
 <p><?php echo $ticket['Ticket']['problem'];?></p>
 
-<h2>Comments</h2>
-<?php echo $html->link('New Comment', array('controller'=>'comments', 'action'=>'add'));?>
+<h3 class="ticket_view">Comments</h3>
+<div class="comments_form">
+<?php echo $form->create('Comment');?>
+ 	<!--<h4>Add a Comment</h4>-->
+	<?php echo $form->input('text', array('label'=>'', 'default'=>'Add a comment'));?>
+<?php echo $form->end('Submit');?>
+</div>
 
-<?php
-foreach($comments as $comment) {
-	//pr($comment);
-	echo $comment['Comment']['text'];
-	echo "Posted by: " . $comment['User']['username'];
-	echo "<br />";
-	echo "<br />";
-}
-?>
+<p class="divider">.........................................................................................................................</p>
+
+<ul id="comments_block">
+	<?php foreach($comments as $comment):?>
+		<li class="comment_block">
+			<p class="comment"><?php echo $comment['Comment']['text'];?></p>
+			<p class="comment_info"><?php echo "Posted by " . $comment['User']['name'] . " on " . $time->niceShort($comment['Comment']['created']);?></p>
+			<br />
+		</li>
+	<?php endforeach;?>
+</ul>

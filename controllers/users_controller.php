@@ -3,7 +3,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('JqueryForm');
 	
-	/**
+	/** beforeFilter
 	 * Controller beforeFilter callback.
 	 * Called before the controller action. 
 	 * 
@@ -14,21 +14,32 @@ class UsersController extends AppController {
 	    $this->Auth->allow('logout');
 	}
 	
-	
+	/** login
+	 *
+	 */
 	function login() {
 	    //Auth magikz
 	}
 	
+	/** logout
+	 *
+	 */
 	function logout() {
 		$this->Session->setFlash('Good-Bye');
 		$this->redirect($this->Auth->logout());
 	}
 
+    /** index
+	 *
+	 */
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 	}
 
+    /** view
+	 *
+	 */
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid User.');
@@ -37,6 +48,9 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
+    /** add
+	 *
+	 */
 	function add() {
 		if (!empty($this->data)) {
 			$this->User->create();
@@ -53,6 +67,9 @@ class UsersController extends AppController {
 		$this->set(compact('tickets', 'groups'));
 	}
 
+    /** edit
+	 *
+	 */
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid User');
@@ -88,6 +105,9 @@ class UsersController extends AppController {
 		}
 	}
 	
+	/** ajax_validate
+	 *
+	 */
 	function ajax_validate() {
 	    Configure::write('debug', 0);
 	    if($this->RequestHandler->isAjax()) {
@@ -102,6 +122,9 @@ class UsersController extends AppController {
 	    }
 	}
 	
+	/** home
+	 *
+	 */
 	function home() {
 	    $user = $this->Session->read('Auth.User.id');
 	    $group = $this->User->read(null, $this->Session->read('Auth.User.id'));
