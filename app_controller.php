@@ -50,12 +50,12 @@ class AppController extends Controller {
 	* 
 	* @return $short_url
 	*/
-	function bitly($controller, $action, $id) {
+	function bitly($controller, $id) {
 	    /*echo $controller;
 	    echo $action;
 	    echo $id;
 	    if(!$controller | !$action | !$id) {*/
-	        $url = 'http://localhost/~madnashua/tellann/'.$controller.'/'.$action.'/'.$id;
+	        $url = 'http://localhost/~madnashua/tellann/'.strtolower($controller).'/view/'.$id;
 	        $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".$url."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
 	        $input = json_decode($input, true);
 	        return $input['results'][$url]['shortUrl'];
@@ -75,7 +75,7 @@ class AppController extends Controller {
 	        //build message
     	    $start = Configure::read('Twitter.messages.'.strtolower($twitter['controller']));
     	    $message = $start[$twitter['action']].$this->string_slice($twitter['ticket']).' ('.$twitter['id'].')'.' - ';
-    	    $message .= $this->bitly($twitter['controller'], $twitter['action'], $twitter['id']); 
+    	    $message .= $this->bitly($twitter['controller'], $twitter['id']); 
 	        
 	        //tweet message
     	    if($this->Twitter->status_update($message)) {
