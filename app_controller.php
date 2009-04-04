@@ -1,7 +1,7 @@
 <?php
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
-    var $components = array('Auth', 'Acl', 'DebugKit.Toolbar');
+    var $components = array('Auth', 'Acl', 'DebugKit.Toolbar', 'Twitter');
 	
     function beforeFilter() {
         $this->Auth->authorize = 'actions';
@@ -63,6 +63,30 @@ class AppController extends Controller {
             $this->Session->write('flash', array('An error occurred with bitlying your link', 'failure'));
             return null;
         }*/
+	}
+	
+	function tweet($twitter) {
+	    //build credentials
+	    $this->Twitter->username = Configure::read('accounts.'.$twitter['queue'].'.username');
+	    $this->Twitter->password = Configure::read('accounts.'.$twitter['queue'].'.password');
+	    
+	    //check credentials
+	    if($this->Twitter->account_verify_credentials()) {
+	        //build message
+    	    $start = Configure::read('Twitter.messages.'.strtolower($twitter['controller']));
+    	    $message = $start[$twitter['action']].$this->string_slice($twitter['ticket']).' ('.$twitter['id'].')'.' - ';
+    	    $message .= $this->bitly($twitter['controller'], $twitter['action'], $twitter['id']); 
+	        
+	        //tweet message
+    	    if($this->Twitter->status_update($message)) {
+    	        return true;
+    	    } else {
+    	        return false;
+    	    }
+	    } else {
+	        $this->Session->write('flash', array('A error occured with your twitter account credentials', 'failure'));
+	        return false;
+	    }
 	}
 }
 ?>

@@ -1,9 +1,5 @@
 <?php
-$config['Twitter'] = array(
-    'madnashua'=>array(
-        'username' => 'madnashua',
-        'password' => 'P8gU-a8a_!'
-    ),
+$config['accounts'] = array(
     'tellannDev'=>array(
         'username' => 'tellannDev',
         'password' => 'Jil)(23af9'
@@ -11,6 +7,17 @@ $config['Twitter'] = array(
     'tellann1stLine'=>array(
         'username'=>'tellann1stLine',
         'password'=>'Jil)(23af9'
+    )
+);
+
+$config['messages'] = array(
+    'tickets' => array(
+        'add'=>'New Ticket: ',
+        'edit'=>'Ticket Edited: ',
+        'complete'=>'Ticket Completed: '
+    ),
+    'comments' => array(
+        'add'=>'Comment added to Ticket: '
     )
 );
 ?>

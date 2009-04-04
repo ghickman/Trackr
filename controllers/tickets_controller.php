@@ -41,16 +41,21 @@ class TicketsController extends AppController {
 			//add current user
 			$this->data['Ticket']['user_id'] = $this->Auth->user('id');
 		    
+		    //$twitter = array($this->name, 'add', $this->Ticket->id, $this->data['Ticket']['title'], $queue['Queue']['id']);
+            //$this->tweet($twitter);
+		    
+		    
 		    if($this->Ticket->save($this->data)) {
 		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
                 
-			    $this->__build_twitter_credentials($queue['Queue']['twitter_username']);
-			    if(!$this->Twitter->status_update($this->__tweet('add', $this->data['Ticket']['title'], $this->Ticket->id))) {
+                //twitter
+                $twitter = array('controller'=>$this->name, 'action'=>'add', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
+			    if(!$this->tweet($twitter)) {
 			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
 			        $this->log('An add-ticket tweet could not be sent', 'twitter');
 			    }
 			    
-			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
+			    //$this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
