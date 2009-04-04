@@ -73,7 +73,7 @@ class AppController extends Controller {
 	    //check credentials
 	    if($this->Twitter->account_verify_credentials()) {
 	        //build message
-    	    $start = Configure::read('Twitter.messages.'.strtolower($twitter['controller']));
+    	    $start = Configure::read('messages.'.strtolower($twitter['controller']));
     	    $message = $start[$twitter['action']].$this->string_slice($twitter['ticket']).' ('.$twitter['id'].')'.' - ';
     	    $message .= $this->bitly($twitter['controller'], $twitter['id']); 
 	        
