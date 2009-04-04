@@ -39,23 +39,16 @@ class TicketsController extends AppController {
 			$this->data['Ticket']['queue_id'] = $queue['Queue']['id'];
 			
 			//add current user
-			$this->data['Ticket']['user_id'] = $this->Auth->user('id');
-		    
-		    //$twitter = array($this->name, 'add', $this->Ticket->id, $this->data['Ticket']['title'], $queue['Queue']['id']);
-            //$this->tweet($twitter);
-		    
+			$this->data['Ticket']['user_id'] = $this->Auth->user('id');		    
 		    
 		    if($this->Ticket->save($this->data)) {
 		        $this->Session->write('flash', array('The Ticket has been saved', 'success'));
-                
-                //twitter
                 $twitter = array('controller'=>$this->name, 'action'=>'add', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
 			    if(!$this->tweet($twitter)) {
 			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
 			        $this->log('An add-ticket tweet could not be sent', 'twitter');
 			    }
-			    
-			    //$this->redirect(array('controller'=>'users', 'action'=>'home'));
+			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
@@ -81,12 +74,11 @@ class TicketsController extends AppController {
     	    
 		    //build array comparative to $this->data and compare
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
-    	        
-    		    //if($is_different)
-    		    $this->__build_twitter_credentials($ticket['Queue']['twitter_username']);
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->write('flash', array('The Ticket has been saved', 'success'));
-    				if(!$this->Twitter->status_update($this->__tweet('edit', $this->data['Ticket']['title'], $id))) {
+    				$queue = $this->Ticket->Queue->findById($this->data['Ticket']['queue_id']);
+    				$twitter = array('controller'=>$this->name, 'action'=>'edit', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
+    				if(!$this->tweet($twitter)) {
     			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
     			        $this->log('An edit-ticket tweet could not be sent', 'twitter');
     			    }
@@ -164,36 +156,6 @@ class TicketsController extends AppController {
         $this->set('applications', $applications);
     }
     
-    /** __build_twitter_credentials
-     * 
-     */
-    function __build_twitter_credentials($queue) {
-	    $this->Twitter->username = Configure::read('Twitter.'.$queue.'.username');
-	    $this->Twitter->password = Configure::read('Twitter.'.$queue.'.password');
-	    if (!$this->Twitter->account_verify_credentials()) {
-	        $this->Session->write('flash', array('A error occured with your twitter account credentials', 'failure'));
-	        $this->redirect($this->referer());
-	    }
-	}
-	
-	/** __tweet
-	 * 
-	 */
-	function __tweet($action, $ticket, $id=null) {
-	    switch($action){
-	        case "add":
-	            $message = "New Ticket: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
-	            break;
-	        case "edit":
-	            $message = "Ticket Edited: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
-	            break;
-	        case "complete":
-	            $message = "Ticket Completed: ".$ticket." - ".$this->bitly($this->name, 'view', $id);
-	            break;
-	    }
-	    return $message;
-	}
-	
 	/** __is_form_different_to_record
      * private function to find the difference between the submitted form data and what is in the database
      * 
