@@ -74,7 +74,7 @@ input, textarea {
 
 select {
 	clear: both;
-	font-size: 120%;
+	font-size: 100%;
 	vertical-align: text-bottom;
 }
 
@@ -90,7 +90,7 @@ option {
 input[type=checkbox] {
 	clear: left;
 	float: left;
-	margin: 0px 6px 7px 2px;
+	margin: 0px 6px 7px 30px;
 	width: auto;
 }
 
@@ -100,9 +100,18 @@ input[type=submit] {
 	padding: 2px 5px;
 	width: auto;
 	vertical-align: bottom;
-	margin: -40px 0 0 -130px;
+	float: right;
+	/*margin: -40px 0 0 -130px;*/
 }
 
 #login {
     margin: 0 100px 0 100px;
+}
+
+#actions {
+    padding: 0 50px 0 50px;
+}
+.ticket_edit #queue, .ticket_edit #complete {
+    margin-top: -70px;
+    float: right;
 }

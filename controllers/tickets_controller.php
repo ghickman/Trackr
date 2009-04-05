@@ -96,11 +96,12 @@ class TicketsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $ticket;
 		}		
-		
+        
+		$release = $ticket['Ticket']['release_id'];
 		$releases = $this->Ticket->Release->find('list', array('fields'=>'Release.date_of'));
 		$statuses = $this->Ticket->Status->find('list');
 		$queues = $this->Ticket->Queue->find('list');
-		$this->set(compact('queues', 'releases', 'statuses'));
+		$this->set(compact('queues', 'releases', 'release', 'statuses'));
 	}
 	
 	/** delete
@@ -168,7 +169,7 @@ class TicketsController extends AppController {
 	    unset($record['user_id']);
 	    
 	    //just for testing - need to make this reflect the current one
-	    $form['release_id'] = null;
+	    //$form['release_id'] = null;
 	    /*echo 'record';
 	    pr($record);
 	    echo 'form';
