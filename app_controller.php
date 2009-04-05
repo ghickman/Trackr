@@ -50,22 +50,15 @@ class AppController extends Controller {
 	* 
 	* @return $short_url
 	*/
-	function bitly($controller, $id) {
-	    /*echo $controller;
-	    echo $action;
-	    echo $id;
-	    if(!$controller | !$action | !$id) {*/
-	        $url = 'http://localhost/~madnashua/tellann/'.strtolower($controller).'/view/'.$id;
-	        $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".$url."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
-	        $input = json_decode($input, true);
-	        return $input['results'][$url]['shortUrl'];
-        /*} else {
-            $this->Session->write('flash', array('An error occurred with bitlying your link', 'failure'));
-            return null;
-        }*/
+	function bitly($id) {
+        $url = 'http://localhost/~madnashua/tellann/tickets/view/'.$id;
+        $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".urlencode($url)."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
+        $input = json_decode($input, true);
+        return $input['results'][$url]['shortUrl'];
 	}
 	
 	function tweet($twitter) {
+	    //pr($twitter);
 	    //build credentials
 	    $this->Twitter->username = Configure::read('accounts.'.$twitter['queue'].'.username');
 	    $this->Twitter->password = Configure::read('accounts.'.$twitter['queue'].'.password');
@@ -73,9 +66,9 @@ class AppController extends Controller {
 	    //check credentials
 	    if($this->Twitter->account_verify_credentials()) {
 	        //build message
-    	    $start = Configure::read('messages.'.strtolower($twitter['controller']));
-    	    $message = $start[$twitter['action']].$this->string_slice($twitter['ticket']).' ('.$twitter['id'].')'.' - ';
-    	    $message .= $this->bitly($twitter['controller'], $twitter['id']); 
+    	    $message = Configure::read('messages.'.strtolower($twitter['controller']).'.'.$twitter['action']).$this->string_slice($twitter['ticket']);
+    	    if($twitter['controller'] == 'Tickets') $message .= '('.$twitter['id'].')';
+    	    $message .= ' - '.$this->bitly($twitter['id']);
 	        
 	        //tweet message
     	    if($this->Twitter->status_update($message)) {
