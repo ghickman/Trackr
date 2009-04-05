@@ -77,7 +77,12 @@ class TicketsController extends AppController {
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->write('flash', array('The Ticket has been saved', 'success'));
     				$queue = $this->Ticket->Queue->findById($this->data['Ticket']['queue_id']);
-    				$twitter = array('controller'=>$this->name, 'action'=>'edit', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
+    				
+    				if($this->data['Ticket']['date_completed'] ==null) {
+    				    $twitter = array('controller'=>$this->name, 'action'=>'edit', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
+    				} else {
+    				    $twitter = array('controller'=>$this->name, 'action'=>'complete', 'id'=>$this->Ticket->id, 'ticket'=>$this->data['Ticket']['title'], 'queue'=>$queue['Queue']['twitter_username']);
+    				}
     				if(!$this->tweet($twitter)) {
     			        $this->Session->write('flash', array('An error occurred while trying to tweet', 'failure'));
     			        $this->log('An edit-ticket tweet could not be sent', 'twitter');
@@ -86,9 +91,7 @@ class TicketsController extends AppController {
     			} else {
     				$this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
     			}
-    			//echo 'different, saved';
     	    } else {
-    	        //echo 'same, ignored';
     	        $this->redirect(array('controller'=>'users', 'action'=>'home'));
     	    }
 		}
@@ -168,16 +171,6 @@ class TicketsController extends AppController {
 	    unset($record['modified']);
 	    unset($record['user_id']);
 	    
-	    //just for testing - need to make this reflect the current one
-	    //$form['release_id'] = null;
-	    /*echo 'record';
-	    pr($record);
-	    echo 'form';
-	    pr($form);
-	    echo 'form, record';
-	    pr(array_diff($form, $record));
-	    echo 'record, form';
-	    pr(array_diff($record, $form));*/
 	    //do both ways around so can compare when form is different to record
 	    //are the arrays different?
 	    if(array_diff($form, $record) | array_diff($record, $form)) {
