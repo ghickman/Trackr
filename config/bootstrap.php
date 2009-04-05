@@ -46,4 +46,5 @@ $pluginPaths = array(
 );
 Configure::load('twitter');
 Configure::load('bitly');
+Configure::load('environments');
 ?>
