@@ -1,7 +1,3 @@
-<div id="home_queue">
-	<?php //echo $html->link('View Queue', array('controller'=>'queues', 'action'=>'view', $queue[0]));?>
-</div>
-
 <div id="ticket_list">
 <h2>Your Tickets</h2>
 
@@ -20,7 +16,7 @@
 		<td>
 			<?php echo $html->link('Edit', array('controller'=>'tickets', 'action'=>'edit', $ticket['Ticket']['id']));?>
 			|
-			<?php echo $html->link('Complete', array('controller'=>'tickets', 'action'=>'complete', $ticket['Ticket']['id']));?>
+			<?php echo $html->link('Complete', array('controller'=>'tickets', 'action'=>'complete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $ticket['Ticket']['title']));?>
 		</td>
 	</tr>
 	<?php endforeach;?>
