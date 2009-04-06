@@ -72,6 +72,7 @@ class AclSetupController extends AppController {
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/view');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/index');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/home');
+        $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/password');
     }
     
     function support() {
@@ -120,6 +121,8 @@ class AclSetupController extends AppController {
         
         $users = $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/view');
         $users .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/index');
+        $users .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/home');
+        $users .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/password');
         
         $this->set(compact('controllers', 'applications', 'comments', 'groups', 'priorities', 'queues', 'releases', 'statuses', 'tickets', 'users'));
     }
@@ -134,6 +137,7 @@ class AclSetupController extends AppController {
         $this->Acl->allow(array('Group'=>array('id'=>3)), 'controllers/Tickets/view');
         
         $this->Acl->allow(array('Group'=>array('id'=>3)), 'controllers/Users/home');
+        $this->Acl->allow(array('Group'=>array('id'=>3)), 'controllers/Users/password');
     }
     
     function business() {
@@ -148,6 +152,7 @@ class AclSetupController extends AppController {
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>3)), 'controllers/Tickets/view');
         
         $users = $this->Acl->check(array('Group'=>array('id'=>3)), 'controllers/Users/home');
+        $users .= $this->Acl->check(array('Group'=>array('id'=>3)), 'controllers/Users/password');
         
         $this->set(compact('controllers', 'comments', 'tickets', 'users'));
     }
