@@ -138,5 +138,35 @@ class UsersController extends AppController {
 	    }
 	    $this->set(compact('user', 'tickets', 'group', 'queue'));
 	}
+	
+	function password() {
+	    if(!empty($this->data)) {
+    	    $user = $this->User->findById($this->Auth->user('id'));
+    	    
+    	    if($this->Auth->password($this->data['User']['old_password']) == $user['User']['password']) {
+    	        if($this->data['User']['password'] == $this->data['User']['repeat_password']) {
+    	            //new_password and repeat_password are the same
+    	            $this->data['User']['id'] = $this->Auth->user('id');
+    	            $this->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
+    	            $this->data['User']['group_id'] = $user['User']['group_id'];
+    	            if($this->User->save($this->data)) {
+        	            $this->Session->write('flash', array('Your password has been changed', 'success'));
+        	            $this->redirect(array('controller'=>'users', 'action'=>'home'));
+        	        } else {
+        	            $this->Session->write('flash', array('Your password could not be changed', 'failure'));
+        	            $this->redirect(array('controller'=>'users', 'action'=>'home'));
+    	            }
+    	        } else {
+    	            $this->Session->write('flash', array('Your passwords do not match, please try again', 'failure'));
+    	        }
+    	    } else {
+    	        $this->Session->write('flash', array('Your password is incorrect, please try again', 'failure'));
+    	    }
+	    }
+	    
+	    if (isset($this->data['User']['password'])) unset($this->data['User']['password']);
+        if (isset($this->data['User']['repeat_password'])) unset($this->data['User']['password_confirm']);
+        if (isset($this->data['User']['old_password'])) unset($this->data['User']['old_password']);
+	}
 }
 ?>
