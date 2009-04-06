@@ -36,8 +36,8 @@ class AppController extends Controller {
 	 * @param $str
 	 * @return $str
 	 */
-	function string_slice($str) {
-	    $length = 60;
+	function string_slice($str, $length=null) {
+	    if(!$length) $length = 60;
 	    if(strlen($str) > $length) {
 	        $str = substr($str, 0, $length);
     	    $str = $str . '...';
