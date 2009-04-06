@@ -51,7 +51,13 @@ class AppController extends Controller {
 	* @return $short_url
 	*/
 	function bitly($id) {
-        $url = 'http://localhost/~madnashua/tellann/tickets/view/'.$id;
+	    $url = 'http://';
+	    if(evn('HTTP_HOST') == Configure::read('env.dev')) {
+	        $url .= Configure::read('env.dev').'/~madnashua/tellann';
+	    } elseif(evn('HTTP_HOST') == Configure::read('env.prod')) {
+	        $url .= Configure::read('env.prod');
+	    }
+        $url .= '/tickets/view/'.$id;
         $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".urlencode($url)."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
         $input = json_decode($input, true);
         return $input['results'][$url]['shortUrl'];
