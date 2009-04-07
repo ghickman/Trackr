@@ -1,6 +1,6 @@
 <?php
 class DATABASE_CONFIG {
-    if(evn('HTTP_HOST') == Configure::read('env.dev')) {
+    if(env('HTTP_HOST') == Configure::read('env.dev')) {
     	var $default = array(
     		'driver' => 'mysql',
     		'persistent' => false,
@@ -9,7 +9,7 @@ class DATABASE_CONFIG {
     		'password' => 'Jil)(23af9',
     		'database' => 'tellannDev'
     	);
-	} elseif(evn('HTTP_HOST') == Configure::read('env.prod')) {
+	} elseif(env('HTTP_HOST') == Configure::read('env.prod')) {
 	    var $default = array(
     		'driver' => 'mysql',
     		'persistent' => false,

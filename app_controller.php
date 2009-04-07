@@ -52,9 +52,9 @@ class AppController extends Controller {
 	*/
 	function bitly($id) {
 	    $url = 'http://';
-	    if(evn('HTTP_HOST') == Configure::read('env.dev')) {
+	    if(env('HTTP_HOST') == Configure::read('env.dev')) {
 	        $url .= Configure::read('env.dev').'/~madnashua/tellann';
-	    } elseif(evn('HTTP_HOST') == Configure::read('env.prod')) {
+	    } elseif(env('HTTP_HOST') == Configure::read('env.prod')) {
 	        $url .= Configure::read('env.prod');
 	    }
         $url .= '/tickets/view/'.$id;
