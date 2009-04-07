@@ -14,11 +14,8 @@ class UsersController extends AppController {
 	    $this->Auth->allow('logout');
 	}
 	
-	/** login
-	 *
-	 */
 	function login() {
-	    //Auth magikz
+	    //Authentication Component login magic. Leave blank!
 	}
 	
 	/** logout
@@ -127,18 +124,17 @@ class UsersController extends AppController {
 	 *
 	 */
 	function home() {
-	    $user = $this->Session->read('Auth.User.id');
-	    $group = $this->User->read(null, $this->Session->read('Auth.User.id'));
-	    $queue = $this->User->Group->Queue->find('all', array('conditions'=>array('Queue.id'=>$group['Group']['queue_id'])));
-	    $this->Session->write('queue', $queue[0]['Queue']['id']);
-	    //echo $queue[0]['Queue']['id'];
+	    $user = $this->Auth->user('id');
 	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user, 'Ticket.date_completed'=>null)));
 	    for($i=0;$i<count($tickets);$i++) {
 	        $tickets[$i]['Ticket']['problem'] = $this->string_slice($tickets[$i]['Ticket']['problem']);
 	    }
-	    $this->set(compact('user', 'tickets', 'group', 'queue'));
+	    $this->set(compact('tickets'));
 	}
 	
+	/** password
+	 * 
+	 */
 	function password() {
 	    if(!empty($this->data)) {
     	    $user = $this->User->findById($this->Auth->user('id'));

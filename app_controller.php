@@ -2,17 +2,34 @@
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
     var $components = array('Auth', 'Acl', 'DebugKit.Toolbar', 'Twitter');
+    var $uses = array('User');
 	
-    function beforeFilter() {
-        $this->Auth->authorize = 'actions';
+	/** beforeFilter
+	 * Controller beforeFilter callback.
+	 * Called before the controller action. 
+	 * 
+	 * @return void
+	 */
+	function beforeFilter() {
+	    $this->Auth->authorize = 'actions';
 	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 	    $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
 	    $this->Auth->loginRedirect = array('controller'=>'users', 'action'=>'home');
 	    $this->Auth->actionPath = 'controllers/';
 	    //$this->Auth->allowedActions = array('display');
 	    $this->Auth->authError = 'Bad user, BAD';
-    }
+	    
+        if(!$this->Session->read('queue') && ($this->Auth->user('id'))) {
+	        $user = $this->User->findById($this->Auth->user('id'));
+	        $group = $this->User->Group->findById($user['User']['group_id']);
+	        $queue = $this->User->Group->Queue->findById($group['Group']['queue_id']);
+	        $this->Session->write('queue', $queue['Queue']['id']);
+	    }
+	}
 
+    /** slug
+     * 
+     */
 	function slug($str) {
 		$str = strtolower(str_replace(' ', '_', $str));
 		$pattern = "/[^a-zA-Z0-9_]/";
@@ -20,7 +37,7 @@ class AppController extends Controller {
 		return $str;
 	}
 	
-	/**
+	/** username
 	 * Takes a username string and returns it in lower case with the spaces coverted to periods.
 	 * @param $str
 	 * @return $str
@@ -30,7 +47,7 @@ class AppController extends Controller {
 	    return $str;
 	}
 	
-	/**
+	/** string_slice
 	 * Takes a string and returns the first 20 characters with ... at the end if the string
 	 * is longer than 20 charachers.
 	 * @param $str
@@ -45,11 +62,11 @@ class AppController extends Controller {
 	    return $str;
 	}
 	
-	/**
-	* Constructs a url from the controller, action and id of the calling action and returns a shortened url from bit.ly
-	* 
-	* @return $short_url
-	*/
+	/** bitly
+	 * Constructs a url from the controller, action and id of the calling action and returns a shortened url from bit.ly
+	 * 
+	 * @return $short_url
+	 */
 	function bitly($id) {
 	    $url = 'http://';
 	    if(env('HTTP_HOST') == Configure::read('env.dev')) {
@@ -63,8 +80,10 @@ class AppController extends Controller {
         return $input['results'][$url]['shortUrl'];
 	}
 	
+	/** tweet
+	 * 
+	 */
 	function tweet($twitter) {
-	    //pr($twitter);
 	    //build credentials
 	    $this->Twitter->username = Configure::read('accounts.'.$twitter['queue'].'.username');
 	    $this->Twitter->password = Configure::read('accounts.'.$twitter['queue'].'.password');

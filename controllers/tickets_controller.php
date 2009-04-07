@@ -108,8 +108,8 @@ class TicketsController extends AppController {
 	}
 	
 	/** delete
-	* 
-	*/
+	 * 
+	 */
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->write('flash', array('Invalid id for Ticket', 'failure'));
