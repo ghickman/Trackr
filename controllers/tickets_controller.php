@@ -1,7 +1,6 @@
 <?php
 class TicketsController extends AppController {
 	var $name = 'Tickets';
-	var $components = array('Twitter');
 	var $helpers = array('Time');
     
     /** index
@@ -55,7 +54,8 @@ class TicketsController extends AppController {
 		}
 		$applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
-		$this->set(compact('applications', 'priorities', 'credentials', 'queue'));
+		asort($priorities);
+		$this->set(compact('applications', 'priorities'));
 	}
     
     /** edit
@@ -145,16 +145,15 @@ class TicketsController extends AppController {
         } else {
             $this->Session->write('flash', array('Ticket '.$ticket['Ticket']['id'].' could not be completed', 'failure'));
             $this->redirect($this->referer());
-        }
-        
+        }    
     }
-    
-    /** autoComplete
+
+    /** autocomplete
      * 
      */
-    function autoComplete() {
+    function autocomplete() {
         Configure::write('debug', 0);
-        //$this->layout = 'ajax';
+        $this->layout = 'ajax';
 
         $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
         $this->set('applications', $applications);

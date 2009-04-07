@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    $("#autoComplete").autocomplete("/tickets/add",{
-        minChars: 2
-        lineSeparator: "^",
+    $("#autoComplete").autocomplete("/~madnashua/tellann/tickets/autocomplete",{
+        minChars: 2,
         cacheLength: 10,
         onItemSelect: selectItem,
         onFindValue: findValue,

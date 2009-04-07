@@ -37,7 +37,6 @@ class AclSetupController extends AppController {
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Applications/index');
         
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Comments/add');
-        $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Comments/edit');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Comments/view');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Comments/index');
         
@@ -68,6 +67,8 @@ class AclSetupController extends AppController {
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/edit');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/view');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/index');
+        $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/complete');
+        $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Tickets/autocomplete');
         
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/view');
         $this->Acl->allow(array('Group'=>array('id'=>2)), 'controllers/Users/index');
@@ -86,7 +87,6 @@ class AclSetupController extends AppController {
         $applications .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Applications/index');
         
         $comments = $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Comments/add');
-        $comments .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Comments/edit');
         $comments .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Comments/view');
         $comments .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Comments/index');
         
@@ -118,6 +118,7 @@ class AclSetupController extends AppController {
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/view');
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/index');
         $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/complete');
+        $tickets .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Tickets/autocomplete');
         
         $users = $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/view');
         $users .= $this->Acl->check(array('Group'=>array('id'=>2)), 'controllers/Users/index');

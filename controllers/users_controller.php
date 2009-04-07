@@ -14,6 +14,9 @@ class UsersController extends AppController {
 	    $this->Auth->allow('logout');
 	}
 	
+	/**
+	 *
+	 */
 	function login() {
 	    //Authentication Component login magic. Leave blank!
 	}
