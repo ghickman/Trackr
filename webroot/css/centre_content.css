@@ -15,3 +15,7 @@ h2.ticket_title {
     color: #D0D0D0;
     padding-bottom: 7px;
 }
+
+#view_sidebar {
+    float: right;
+}

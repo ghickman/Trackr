@@ -86,3 +86,12 @@ ul, li {
 	margin: 0 12px;
 	list-style-type: none;
 }
+
+.wrapper {
+	width  		: 999px;
+	margin 		: 0 auto;
+}
+
+#container {
+	text-align: left;
+}

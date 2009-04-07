@@ -10,11 +10,13 @@
 		echo $html->meta('icon');
 
 		echo $html->css('cake.generic');
-		echo $html->css('layout');
 		echo $html->css('main');
-		echo $html->css('centre_content');
+		echo $html->css('header');
+		echo $html->css('menu');
+		echo $html->css('footer');
 		echo $html->css('forms');
 		echo $html->css('flash_messages');
+		echo $html->css('centre_content');
 
 		echo $scripts_for_layout;
 	?>
@@ -42,7 +44,9 @@
 		</div>
 		<div id="footer">
 			<?php if($session->read('Auth.User')):?>
-			<p>Logged in as: <?php echo $session->read('Auth.User.name');?> | <?php echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></p>
+			<p>Logged in as: <?php echo $session->read('Auth.User.name');?> | 
+			<?php echo $html->link('Change Password', array('controller' => 'users', 'action' => 'password'));?> | 
+			<?php echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></p>
 			<?php endif;?>
 		</div>
 	</div>

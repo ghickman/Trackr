@@ -1,0 +1,22 @@
+#header{
+	background: #999999;
+	height: 40px;
+}
+
+#header ul {
+    padding-top: 11px;
+}
+
+#header ul li {
+	display:inline;
+}
+
+#header ul li a {
+	font-weight: bold;
+	text-decoration: none;
+	padding: 5px 10px 5px 10px;
+}
+
+#header a:hover {
+	text-decoration: none;
+}

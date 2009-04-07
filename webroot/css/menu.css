@@ -1,0 +1,23 @@
+/* Menu Items */
+div#menu ul li {
+	float 		: left;
+	list-style	: none;
+	display     : inline;
+	margin 		: 133px 0 6px 0px;
+}
+
+li.menu_item a {
+	height 		: 28px;
+	color 		: #FFF;
+	font-size	: 18px;
+	font-family : Verdana, sans-serif;
+	text-transform: capitalize;
+	text-decoration: none;
+	outline		: none;
+	padding 	: 6px 10px 9px 10px;
+}
+
+#home_queue {
+    float: right;
+    margin-top: -18px;
+}
