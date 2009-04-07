@@ -38,11 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	if(env('HTTP_HOST') == Configure::read('env.dev')) {
-	    Configure::write('debug', 2);
-    } elseif(env('HTTP_HOST') == Configure::read('env.prod')) {
-        Configure::write('debug', 0);
-    }
+    Configure::write('debug', 2);
 /**
  * Application wide charset encoding
  */
