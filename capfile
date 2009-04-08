@@ -1,0 +1,42 @@
+load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+role :web, 'trackr.ghickman.co.uk'
+ssh_options[:username] = 'madnashua'
+ssh_options[:forward_agent] = true
+
+set :scm, :git
+set :scm_verbose, true
+set :repository, 'git@madnashua.com:tellann.git'
+set :branch, 'master'
+set :deploy_via, :remote_cache
+set :use_sudo, false
+set :application, 'tellann'
+set :deploy_to, "/home/madnashua/Projects/#{application}/"
+
+namespace :deploy do
+  task :start do
+  end
+  
+  task :stop do
+  end
+  
+  task :restart do
+  end
+
+  desc <<-DESC
+    Symlinks shared configuration and directories into the latest release
+    Also clear persistent and model cache
+  DESC
+  task :finalize_update do
+    run "rm -rf #{latest_release}/app/config; ln -s #{shared_path}/app/config #{latest_release}/app/config"
+    run "rm -rf #{latest_release}/app/tmp/models/*"
+    run "rm -rf #{latest_release}/app/tmp/persistent/*"
+  end
+  
+  
+end
+
+namespace :tail do
+  task :default do
+    run "tail -f #{deploy_to}/logs/*.log"
+  end
+end
