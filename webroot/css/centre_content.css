@@ -6,8 +6,21 @@
 	overflow: auto;
 }
 
-h2.ticket_title {
+#view_heading {
+    margin-left: 10px;
+}
+
+.ticket_title {
     text-align: left;
+    display: inline;
+}
+
+.edit_link {
+/*    margin: -25px 0 0 100px;
+    font-size: 10px;
+    color: #fff;*/
+    margin: 0;
+    display: inline;
 }
 
 .divider {
@@ -18,4 +31,27 @@ h2.ticket_title {
 
 #view_sidebar {
     float: right;
+    margin: 0 0 0 0;
+    font-size: 80%;
+}
+
+#ticket_problem {
+    padding-left: 10px;
+    width: 750px;
+    float: left;
+    
+}
+
+.comments_form {
+    float:left;
+    width: 100%;
+}
+
+.comments_form div.submit {
+    margin-top: -15px;
+}
+
+.comment_info {
+    padding-top: 10px;
+    font-size: 85%;
 }

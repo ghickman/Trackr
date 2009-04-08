@@ -72,8 +72,9 @@ h2 {
 h3 {
 	color: #993;
 	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
-	font-size: 165%;
+	font-size: 140%;
 	padding-top: 1.5em;
+    padding-left: 10px;
 }
 
 h4 {

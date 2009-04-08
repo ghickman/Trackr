@@ -8,20 +8,13 @@
 	<fieldset>
  		<legend><?php __('Add Ticket');?></legend>
 	<?php
-		echo Configure::read('env.dev');
-		echo env('HTTP_HOST');
-		if(env('HTTP_HOST') == Configure::read('env.dev')) {
-		    echo '2';
-	    } elseif(env('HTTP_HOST') == Configure::read('env.prod')) {
-	        echo '0';
-	    }
 		echo $form->input('title');
 		//echo $form->input('application');
 	?>
 	<div class="input text">
 	<?php
 		echo $form->label('Application');
-		echo $form->text('Application.name', array('size'=>30, 'id'=>'autoComplete', 'autocomplete'=>'off'));
+		echo $form->text('Application.name', array('size'=>30, 'id'=>'autoComplete'));
 	?>
 	</div>
 	<?php
