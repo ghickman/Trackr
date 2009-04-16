@@ -31,18 +31,3 @@ function formatItem(row) {
         return row[0] + "(id: " + row[1] + ")";
     }
 }
-
-/*
-if ($('input.lookupActivity').length) {
-    $('input.lookupActivity').autocomplete($.url("/lookup/activity/"), {
-        minChars: 2,
-        width: 310,
-        selectFirst: false
-    });
-
-    $('input.lookupActivity').result(function(event, data, formatted) {
-        if (data) {
-            $(this).parent().prev().find("input").val(data[1]);
-        }
-    });
-}*/

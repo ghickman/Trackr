@@ -9,12 +9,12 @@
  		<legend><?php __('Add Ticket');?></legend>
 	<?php
 		echo $form->input('title');
-		//echo $form->input('application');
+		echo $form->input('applications');
 	?>
 	<div class="input text">
 	<?php
-		echo $form->label('Application');
-		echo $form->text('Application.name', array('size'=>30, 'id'=>'autoComplete'));
+		//echo $form->label('Application');
+		//echo $form->text('Application.name', array('size'=>30, 'id'=>'autoComplete'));
 	?>
 	</div>
 	<?php

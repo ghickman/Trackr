@@ -52,7 +52,8 @@ class TicketsController extends AppController {
 		        $this->Session->write('flash', array('The Ticket could not be saved. Please, try again', 'failure'));
 		    }
 		}
-		$applications = $this->Ticket->Application->find('list');
+		//$applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>'Po%'), 'fields'=>array('name', 'id')));
+        $applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list');
 		asort($priorities);
 		$this->set(compact('applications', 'priorities'));

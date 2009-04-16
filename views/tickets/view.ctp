@@ -8,7 +8,8 @@
 
 <div id="view_sidebar">
 	<p>Raised by: <?php echo $ticket['User']['name'];?></p>
-	<p>Created on: <?php echo $time->niceShort($ticket['Ticket']['created']);?></p>
+	<p>On: <?php echo $time->niceShort($ticket['Ticket']['created']);?></p>
+	<p>Fpr: <?php echo $ticket['Application']['title'];?></p>
 	<?php if($ticket['Ticket']['modified'] != $ticket['Ticket']['created']):?>
 		<p>Last Edited: <?php echo $time->niceShort($ticket['Ticket']['modified']);?></p>
 	<?php endif;?>
