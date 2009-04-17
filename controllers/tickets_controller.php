@@ -153,19 +153,9 @@ class TicketsController extends AppController {
      * 
      */
     function __is_form_different_to_record($form, $record) {
-        //clean up the record array to only include
-        unset($record['id']);
-	    unset($record['created']);
-	    unset($record['modified']);
-	    unset($record['user_id']);
-	    
-	    //do both ways around so can compare when form is different to record
-	    //are the arrays different?
-	    if(array_diff($form, $record) || array_diff($record, $form)) {
-	        return true; //yes
-	    } else {
-	        return false; //no
-	    }
+        unset($record['id'], $record['created'], $record['modified'], $record['user_id']);
+	    if(array_diff($form, $record) || array_diff($record, $form)) return true;
+	    return false;
     }
     
     /** __parse_date_completed
