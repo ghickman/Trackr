@@ -4,21 +4,17 @@
   slug: emergency
 -
   id: '2'
-  name: 'Low'
-  slug: low
--
-  id: '3'
   name: 'Very High'
   slug: very_high
 -
-  id: '4'
+  id: '3'
   name: 'High'
   slug: high
 -
-  id: '5'
+  id: '4'
   name: 'Medium'
   slug: medium
 -
-  id: '6'
-  name: 'Danger'
-  slug: danger
+  id: '5'
+  name: 'Low'
+  slug: low

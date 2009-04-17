@@ -2,29 +2,15 @@
   id: '1'
   name: Pending
   slug: pending
-  created: '2009-02-19 20:07:59'
-  modified: '2009-02-19 20:07:59'
 -
   id: '2'
-  name: Closed
-  slug: closed
-  created: '2009-02-19 20:08:14'
-  modified: '2009-02-19 20:08:14'
--
-  id: '3'
-  name: Testing
-  slug: testing
-  created: '2009-02-21 20:56:53'
-  modified: '2009-02-21 20:56:53'
--
-  id: '4'
   name: 'Awaiting Assignment'
   slug: awaiting_assignment
-  created: '2009-02-21 20:57:15'
-  modified: '2009-02-21 20:57:15'
 -
-  id: '5'
-  name: Completed
-  slug: completed
-  created: '2009-02-21 20:57:32'
-  modified: '2009-02-21 20:57:32'
+  id: '3'
+  name: Development
+  slug: development
+-
+  id: '4'
+  name: Testing
+  slug: testing
