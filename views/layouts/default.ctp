@@ -37,7 +37,7 @@
 		<div id="content">
 
 			<?php $session->flash('auth');?>
-			<?php echo $mysession->flash();?>
+			<?php $session->flash();?>
 
 			<?php echo $content_for_layout; ?>
 
