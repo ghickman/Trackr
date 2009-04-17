@@ -17,7 +17,7 @@ class AppController extends Controller {
 	    $this->Auth->loginRedirect = array('controller'=>'users', 'action'=>'home');
 	    $this->Auth->actionPath = 'controllers/';
 	    //$this->Auth->allowedActions = array('display');
-	    $this->Auth->authError = 'Bad user, BAD';
+	    $this->Auth->authError = 'Sorry, You are not authorised to access this location!';
 	    
         if(!$this->Session->read('queue') && ($this->Auth->user('id'))) {
 	        $user = $this->User->findById($this->Auth->user('id'));
@@ -54,10 +54,10 @@ class AppController extends Controller {
 	 * @return $str
 	 */
 	function string_slice($str, $length=null) {
-	    if(!$length) $length = 60;
+	    if(!$length) $length = 50;
 	    if(strlen($str) > $length) {
 	        $str = substr($str, 0, $length);
-    	    $str = $str . '...';
+    	    $str .= '...';
         }
 	    return $str;
 	}
@@ -69,11 +69,8 @@ class AppController extends Controller {
 	 */
 	function bitly($id) {
 	    $url = 'http://';
-	    if(env('HTTP_HOST') == Configure::read('env.dev')) {
-	        $url .= Configure::read('env.dev').'/~madnashua/tellann';
-	    } elseif(env('HTTP_HOST') == Configure::read('env.prod')) {
-	        $url .= Configure::read('env.prod');
-	    }
+	    if(env('HTTP_HOST') == Configure::read('env.dev')) $url .= Configure::read('env.dev').'/~madnashua/tellann';
+	    elseif(env('HTTP_HOST') == Configure::read('env.prod')) $url .= Configure::read('env.prod');
         $url .= '/tickets/view/'.$id;
         $input = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".urlencode($url)."&login=".Configure::read('Bitly.login')."&apiKey=".Configure::read('Bitly.apiKey'));
         $input = json_decode($input, true);
@@ -89,22 +86,18 @@ class AppController extends Controller {
 	    $this->Twitter->password = Configure::read('accounts.'.$twitter['queue'].'.password');
 	    
 	    //check credentials
-	    if($this->Twitter->account_verify_credentials()) {
-	        //build message
-    	    $message = Configure::read('messages.'.strtolower($twitter['controller']).'.'.$twitter['action']).$this->string_slice($twitter['ticket']);
-    	    if($twitter['controller'] == 'Tickets') $message .= '('.$twitter['id'].')';
-    	    $message .= ' - '.$this->bitly($twitter['id']);
-	        
-	        //tweet message
-    	    if($this->Twitter->status_update($message)) {
-    	        return true;
-    	    } else {
-    	        return false;
-    	    }
-	    } else {
-	        $this->Session->write('flash', array('A error occured with your twitter account credentials', 'failure'));
+	    if(!$this->Twitter->account_verify_credentials()) {
+	        $this->Session->flash('A error occured with your twitter account credentials');
 	        return false;
 	    }
+	    
+        //build message
+	    $message = Configure::read('messages.'.strtolower($twitter['controller']).'.'.$twitter['action']).$this->string_slice($twitter['ticket']);
+	    if($twitter['controller'] == 'Tickets') $message .= '('.$twitter['id'].')';
+	    $message .= ' - '.$this->bitly($twitter['id']);
+	    if($this->Twitter->status_update($message)) return true;
+	        
+	    return false;
 	}
 }
 ?>
