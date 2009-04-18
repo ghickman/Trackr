@@ -21,7 +21,6 @@ class StatusesController extends AppController {
 			$this->data['Status']['slug'] = $this->slug($this->data['Status']['name']);
 			if ($this->Status->save($this->data)) {
 				$this->Session->setFlash('The Status has been saved');
-				$this->Session->write('flash', array('The Status has been saved', 'success'));
 				$this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash('The Status could not be saved. Please, try again.');

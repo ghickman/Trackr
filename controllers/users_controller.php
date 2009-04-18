@@ -149,18 +149,14 @@ class UsersController extends AppController {
     	            $this->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
     	            $this->data['User']['group_id'] = $user['User']['group_id'];
     	            if($this->User->save($this->data)) {
-        	            $this->Session->write('flash', array('Your password has been changed', 'success'));
+        	            $this->Session->setFlash('Your password has been changed');
         	            $this->redirect(array('controller'=>'users', 'action'=>'home'));
         	        } else {
-        	            $this->Session->write('flash', array('Your password could not be changed', 'failure'));
+        	            $this->Session->setFlash('Your password could not be changed');
         	            $this->redirect(array('controller'=>'users', 'action'=>'home'));
     	            }
-    	        } else {
-    	            $this->Session->write('flash', array('Your passwords do not match, please try again', 'failure'));
-    	        }
-    	    } else {
-    	        $this->Session->write('flash', array('Your password is incorrect, please try again', 'failure'));
-    	    }
+    	        } else $this->Session->setFlash('Your passwords do not match, please try again');
+    	    } else $this->Session->setFlash('Your password is incorrect, please try again');
 	    }
 	    
 	    if (isset($this->data['User']['password'])) unset($this->data['User']['password']);

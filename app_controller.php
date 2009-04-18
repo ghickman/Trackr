@@ -87,7 +87,7 @@ class AppController extends Controller {
 	    
 	    //check credentials
 	    if(!$this->Twitter->account_verify_credentials()) {
-	        $this->Session->flash('A error occured with your twitter account credentials');
+	        $this->Session->setFlash('A error occured with your twitter account credentials');
 	        return false;
 	    }
 	    
