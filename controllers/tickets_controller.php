@@ -3,14 +3,6 @@ class TicketsController extends AppController {
 	var $name = 'Tickets';
 	var $helpers = array('Time');
     
-    /** index
-     *
-     */
-	function index() {
-		$this->Ticket->recursive = 0;
-		$this->set('tickets', $this->paginate());
-	}
-    
     /** view
      *
      */
