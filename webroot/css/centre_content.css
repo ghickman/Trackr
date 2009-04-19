@@ -51,6 +51,10 @@
     margin-top: -15px;
 }
 
+#comments_block {
+    float:left;
+    width: 100%;
+}
 .comment_info {
     padding-top: 10px;
     font-size: 85%;
