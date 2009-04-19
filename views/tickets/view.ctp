@@ -9,7 +9,7 @@
 <div id="view_sidebar">
 	<p>Raised by: <?php echo $ticket['User']['name'];?></p>
 	<p>On: <?php echo $time->niceShort($ticket['Ticket']['created']);?></p>
-	<p>For: <?php echo $ticket['Application']['title'];?></p>
+	<p>For: <?php echo $ticket['Application']['name'];?></p>
 	<?php if($ticket['Ticket']['modified'] != $ticket['Ticket']['created']):?>
 		<p>Last Edited: <?php echo $time->niceShort($ticket['Ticket']['modified']);?></p>
 	<?php endif;?>

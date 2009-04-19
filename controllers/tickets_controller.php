@@ -145,8 +145,9 @@ class TicketsController extends AppController {
      * 
      */
     function __is_form_different_to_record($form, $record) {
-        unset($record['id'], $record['created'], $record['modified'], $record['user_id']);
-	    if(array_diff($form, $record) || array_diff($record, $form)) return true;
+        unset($record['id'], $record['created'], $record['modified'], $record['user_id'], $record['application_id'], $record['priority_id']);
+	    //if(array_diff($form, $record) || array_diff($record, $form)) return true;
+	    if(!Set::isEqual($form, $record)) return true;
 	    return false;
     }
     
