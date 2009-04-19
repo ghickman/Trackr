@@ -1,0 +1,9 @@
+UP:
+  add_field:
+    tickets:
+      application_id: [int, 11]
+      priority_id: [int, 11]
+      
+DOWN:
+  drop_field:
+    tickets: [application_id, priority_id]

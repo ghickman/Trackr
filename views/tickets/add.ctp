@@ -9,7 +9,7 @@
  		<legend><?php __('Add Ticket');?></legend>
 	<?php
 		echo $form->input('title');
-		echo $form->input('applications');
+		echo $form->input('application_id');
 	?>
 	<div class="input text">
 	<?php
@@ -18,7 +18,7 @@
 	?>
 	</div>
 	<?php
-		echo $form->input('priority');
+		echo $form->input('priority_id');
 		echo $form->input('problem');
 	?>
 	</fieldset>

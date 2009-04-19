@@ -28,7 +28,7 @@ class TicketsController extends AppController {
 			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id', 'twitter_username')));
 			$this->data['Ticket']['status_id'] = $status['Status']['id'];
 			$this->data['Ticket']['queue_id'] = $queue['Queue']['id'];
-			$this->data['Ticket']['user_id'] = $this->Auth->user('id');		    
+			$this->data['Ticket']['user_id'] = $this->Auth->user('id');   
 		    
 		    if($this->Ticket->save($this->data)) {
 		        $this->Session->setFlash('The Ticket has been saved');

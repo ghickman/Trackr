@@ -2,6 +2,6 @@
 class Priority extends AppModel {
 	var $name = 'Priority';
 	
-	var $hasAndBelongsToMany = array('Ticket');
+	var $hasMany = array('Ticket');
 }
 ?>
