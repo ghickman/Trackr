@@ -14,7 +14,7 @@ class UsersController extends AppController {
 	    $this->Auth->allow('logout');
 	}
 	
-	/**
+	/** login
 	 *
 	 */
 	function login() {
@@ -127,6 +127,7 @@ class UsersController extends AppController {
 	 *
 	 */
 	function home() {
+	    if(!$this->Auth->user()) $this->redirect(array('controller'=>'users', 'action'=>'login'));
 	    $user = $this->Auth->user('id');
 	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user, 'Ticket.date_completed'=>null)));
 	    for($i=0;$i<count($tickets);$i++) {

@@ -14,10 +14,10 @@ class AppController extends Controller {
 	    $this->Auth->authorize = 'actions';
 	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 	    $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-	    $this->Auth->loginRedirect = array('controller'=>'users', 'action'=>'home');
+	    $this->Auth->loginRedirect = '/';//array('controller'=>'users', 'action'=>'home');
 	    $this->Auth->actionPath = 'controllers/';
-	    //$this->Auth->allowedActions = array('display');
-	    $this->Auth->authError = 'Sorry, You are not authorised to access this location!';
+	    $this->Auth->allowedActions = array('home');
+	    $this->Auth->authError = 'Sorry, you are not authorised to access this location';
 	    
         if(!$this->Session->read('queue') && ($this->Auth->user('id'))) {
 	        $user = $this->User->findById($this->Auth->user('id'));
