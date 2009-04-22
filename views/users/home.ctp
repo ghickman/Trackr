@@ -16,7 +16,7 @@
 		<td>
 			<?php echo $html->link('Edit', array('controller'=>'tickets', 'action'=>'edit', $ticket['Ticket']['id']));?>
 			|
-			<?php echo $html->link('Complete', array('controller'=>'tickets', 'action'=>'complete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $ticket['Ticket']['title']));?>
+			<?php echo $html->link('Complete', array('controller'=>'tickets', 'action'=>'complete', $ticket['Ticket']['id']), null, sprintf(__('Are you sure you want to complete %s?', true), $ticket['Ticket']['title']));?>
 		</td>
 	</tr>
 	<?php endforeach;?>
