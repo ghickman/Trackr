@@ -9,7 +9,7 @@ class QueuesController extends AppController {
 
 	function view($id=null) {
 		if (!$id) {
-			$this->Session->write('flash', array('Invalid Queue', 'failure'));
+			$this->Session->setFlash('Invalid Queue');
 			$this->redirect(array('action'=>'index'));
 		}
 		$queue = $this->Queue->read(null, $id);
