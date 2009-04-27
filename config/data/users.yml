@@ -2,31 +2,63 @@
   id: '1'
   name: 'George Hickman'
   username: george.hickman
-  password: 3a63faa48a90c6f26e44457f1367599d8b481a91
+  password: 5723de1b1d7aaaeff1a97eee8ee7638572f2c99f
   group_id: 1
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '2'
-  name: 'Matt Lee'
-  username: matt.lee
-  password: 3a63faa48a90c6f26e44457f1367599d8b481a91
-  group_id: 2
+  name: 'Poppy Lewis'
+  username: poppy.lewis
+  password: 5723de1b1d7aaaeff1a97eee8ee7638572f2c99f
+  group_id: 1
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '3'
-  name: 'Rich Grundy'
-  username: rich.grundy
-  password: 3a63faa48a90c6f26e44457f1367599d8b481a91
-  group_id: 3
+  name: 'Chris Loftus'
+  username: chris.loftus
+  password: 4b21fbf77c87570a13f1814af517e75463f5e20b
+  group_id: 2
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '4'
-  name: 'Poppy Lewis'
-  username: poppy.lewis
-  password: 3a63faa48a90c6f26e44457f1367599d8b481a91
-  group_id: 1
+  name: 'Ian Hickman'
+  username: ian.hickman
+  password: c43d4c76caf5a98743ec369e273e5553ddcab8b6
+  group_id: 3
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '5'
+  name: 'Ros Brown'
+  username: ros.brown
+  password: c43d4c76caf5a98743ec369e273e5553ddcab8b6
+  group_id: 2
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '6'
+  name: 'Richard Grundy'
+  username: richard.grundy
+  password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
+  group_id: 2
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '7'
+  name: 'Matt Lee'
+  username: matt.lee
+  password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
+  group_id: 3
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '8'
+  name: 'Yonghuai Liu'
+  username: yonghuai.liu
+  password: 4b21fbf77c87570a13f1814af517e75463f5e20b
+  group_id: 3
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'

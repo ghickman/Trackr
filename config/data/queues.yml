@@ -1,12 +1,18 @@
 -
   id: '1'
-  name: 'Quick Fix'
-  slug: quick_fix
+  name: 'Kingswood BAU'
+  slug: kingswood_BAU
   is_first_line: '1'
-  twitter_username: 'tellann1stLine'
+  twitter_username: 'kingswoodBAU'
 -
   id: '2'
-  name: Lazy
-  slug: lazy
+  name: Cardiff BAU
+  slug: cardiff_BAU
   is_first_line: '0'
-  twitter_username: 'tellann2ndLine'
+  twitter_username: 'cardiffBAU'
+-
+  id: '3'
+  name: Rhythmyx
+  slug: rhythmyx
+  is_first_line: '0'
+  twitter_username: rhythmyx
