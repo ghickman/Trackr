@@ -4,8 +4,16 @@ $config['accounts'] = array(
         'username' => 'tellannDev',
         'password' => 'Jil)(23af9'
     ),
-    'tellann1stLine'=>array(
-        'username'=>'tellann1stLine',
+    'kingswoodBAU'=>array(
+        'username'=>'kingswoodBAU',
+        'password'=>'Jil)(23af9'
+    ),
+    'cardiffBAU'=>array(
+        'username'=>'cardiffBAU',
+        'password'=>'Jil)(23af9'
+    ),
+    'rhythmyx'=>array(
+        'username'=>'rhythmyx',
         'password'=>'Jil)(23af9'
     )
 );
