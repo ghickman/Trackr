@@ -28,9 +28,10 @@ namespace :deploy do
   DESC
   task :finalize_update do
     run <<-CMD
-      rm -rf #{latest_release}/config; ln -nfs #{shared_path}/config #{latest_release}/config &&
-      mkdir -p -m 777 #{latest_release}/tmp/cache/{models,persistent} &&
-      rm #{latest_release}/webroot/.htaccess; ln -nfs #{shared_path}/webroot/.htaccess #{latest_release}/webroot/.htaccess &&
+      rm #{latest_release}/config/database.php; ln -fs #{shared_path}/config/database.php #{latest_release}/config/database.php;
+      rm #{latest_release}/config/core.php; ln -fs #{shared_path}/config/core.php #{latest_release}/config/core.php;
+      mkdir -p -m 777 #{latest_release}/tmp/cache/{models,persistent}; chmod -R 777 #{latest_release}/tmp/;
+      rm #{latest_release}/webroot/.htaccess; ln -nfs #{shared_path}/webroot/.htaccess #{latest_release}/webroot/.htaccess;
       rm #{latest_release}/webroot/index.php; ln -nfs #{shared_path}/webroot/index.php #{latest_release}/webroot/index.php
     CMD
   end
