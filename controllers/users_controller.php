@@ -131,6 +131,7 @@ class UsersController extends AppController {
 	    $user = $this->Auth->user('id');
 	    $tickets = $this->User->Ticket->find('all', array('conditions'=>array('User.id'=>$user, 'Ticket.date_completed'=>null)));
 	    for($i=0;$i<count($tickets);$i++) {
+	        $tickets[$i]['Ticket']['title'] = $this->string_slice($tickets[$i]['Ticket']['title'], 27);
 	        $tickets[$i]['Ticket']['problem'] = $this->string_slice($tickets[$i]['Ticket']['problem']);
 	    }
 	    $this->set(compact('tickets'));

@@ -14,6 +14,9 @@ class QueuesController extends AppController {
 		}
 		$queue = $this->Queue->read(null, $id);
 		$tickets = $this->Queue->Ticket->find('all', array('conditions'=>array('Ticket.queue_id'=>$id, 'Ticket.date_completed'=>null)));
+		for($i=0;$i<count($tickets);$i++) {
+	        $tickets[$i]['Ticket']['title'] = $this->string_slice($tickets[$i]['Ticket']['title']);
+	    }
 		$this->set(compact('queue', 'tickets'));
 	}
 
