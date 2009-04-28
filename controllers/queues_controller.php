@@ -13,7 +13,7 @@ class QueuesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$queue = $this->Queue->read(null, $id);
-		$tickets = $this->Queue->Ticket->find('all', array('conditions'=>array('Ticket.queue_id'=>$queue['Queue']['id'])));
+		$tickets = $this->Queue->Ticket->find('all', array('conditions'=>array('Ticket.queue_id'=>$id, 'Ticket.date_completed'=>null)));
 		$this->set(compact('queue', 'tickets'));
 	}
 
