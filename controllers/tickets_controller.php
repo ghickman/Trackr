@@ -42,7 +42,7 @@ class TicketsController extends AppController {
 		}
 		//$applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>'Po%'), 'fields'=>array('name', 'id')));
         $applications = $this->Ticket->Application->find('list');
-		$priorities = $this->Ticket->Priority->find('list');
+		$priorities = $this->Ticket->Priority->find('list', array('fields'=>array('Priority.id', 'Priority.name')));
 		asort($priorities);
 		$this->set(compact('applications', 'priorities'));
 	}
