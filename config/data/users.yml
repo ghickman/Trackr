@@ -11,7 +11,7 @@
   name: 'Poppy Lewis'
   username: poppy.lewis
   password: 5723de1b1d7aaaeff1a97eee8ee7638572f2c99f
-  group_id: 1
+  group_id: 2
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
@@ -19,7 +19,7 @@
   name: 'Chris Loftus'
   username: chris.loftus
   password: 4b21fbf77c87570a13f1814af517e75463f5e20b
-  group_id: 2
+  group_id: 3
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
@@ -27,7 +27,7 @@
   name: 'Ian Hickman'
   username: ian.hickman
   password: c43d4c76caf5a98743ec369e273e5553ddcab8b6
-  group_id: 3
+  group_id: 5
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
@@ -43,7 +43,7 @@
   name: 'Richard Grundy'
   username: richard.grundy
   password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
-  group_id: 2
+  group_id: 4
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
@@ -51,7 +51,7 @@
   name: 'Matt Lee'
   username: matt.lee
   password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
-  group_id: 3
+  group_id: 5
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
@@ -59,6 +59,22 @@
   name: 'Yonghuai Liu'
   username: yonghuai.liu
   password: 4b21fbf77c87570a13f1814af517e75463f5e20b
+  group_id: 5
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '9'
+  name: 'Seb Hurley'
+  username: seb.hurley
+  password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
+  group_id: 5
+  created: '2009-02-19 16:36:08'
+  modified: '2009-02-19 16:36:08'
+-
+  id: '10'
+  name: 'Ben Powles'
+  username: ben.powles
+  password: 416e8d7cb9f539e0c501d4084c13b22f4a0b5e74
   group_id: 3
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
