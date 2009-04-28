@@ -1,7 +1,7 @@
 <?php
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
-    var $components = array('Auth', 'Acl', 'DebugKit.Toolbar', 'Twitter');
+    var $components = array('Auth', 'Acl', 'Twitter');//, 'DebugKit.Toolbar');
     var $uses = array('User');
 	
 	/** beforeFilter
