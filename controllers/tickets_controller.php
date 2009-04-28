@@ -25,7 +25,7 @@ class TicketsController extends AppController {
 			
 			//add default queue/status and set the user
 			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
-			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'quick_fix'), 'fields'=>array('id', 'twitter_username')));
+			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'kingswood_BAU'), 'fields'=>array('id', 'twitter_username')));
 			$this->data['Ticket']['status_id'] = $status['Status']['id'];
 			$this->data['Ticket']['queue_id'] = $queue['Queue']['id'];
 			$this->data['Ticket']['user_id'] = $this->Auth->user('id');   
