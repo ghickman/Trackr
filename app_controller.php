@@ -1,20 +1,22 @@
 <?php
 class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Javascript', 'Time', 'Mysession', 'Ajax');
-    var $components = array('Auth', 'Acl', 'Twitter');//, 'DebugKit.Toolbar');
+    var $components = array('Auth', 'Acl', 'Twitter');
     var $uses = array('User');
 	
-	/** beforeFilter
+	/**
 	 * Controller beforeFilter callback.
-	 * Called before the controller action. 
-	 * 
+	 * Called before all controller actions.
+	 * Sets up the Auth component
+	 * Populates the queue variable in the session with the currently logged in user
+	 * @param void
 	 * @return void
 	 */
 	function beforeFilter() {
 	    $this->Auth->authorize = 'actions';
 	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 	    $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-	    $this->Auth->loginRedirect = '/';//array('controller'=>'users', 'action'=>'home');
+	    $this->Auth->loginRedirect = '/';
 	    $this->Auth->actionPath = 'controllers/';
 	    $this->Auth->allowedActions = array('home');
 	    $this->Auth->authError = 'Sorry, you are not authorised to access this location';
@@ -27,8 +29,11 @@ class AppController extends Controller {
 	    }
 	}
 
-    /** slug
-     * 
+    /**
+     * Takes a string and replaces spaces with underscores and other non-alphanumeric
+     * characters with spaces
+     * @param $str
+     * @return $str
      */
 	function slug($str) {
 		$str = strtolower(str_replace(' ', '_', $str));
@@ -37,7 +42,7 @@ class AppController extends Controller {
 		return $str;
 	}
 	
-	/** username
+	/**
 	 * Takes a username string and returns it in lower case with the spaces coverted to periods.
 	 * @param $str
 	 * @return $str
@@ -47,9 +52,9 @@ class AppController extends Controller {
 	    return $str;
 	}
 	
-	/** string_slice
-	 * Takes a string and returns the first 20 characters with ... at the end if the string
-	 * is longer than 20 charachers.
+	/**
+	 * Takes a string and returns the first 50 characters with ... at the end if the string
+	 * is longer than 50 charachers.
 	 * @param $str
 	 * @return $str
 	 */
@@ -62,9 +67,10 @@ class AppController extends Controller {
 	    return $str;
 	}
 	
-	/** bitly
-	 * Constructs a url from the controller, action and id of the calling action and returns a shortened url from bit.ly
-	 * 
+	/**
+	 * Constructs a URL using the id passed into the function, that points to 
+	 * /tickets/view/ and submits it to URL for shortening
+	 * @param $id
 	 * @return $short_url
 	 */
 	function bitly($id) {
@@ -77,21 +83,22 @@ class AppController extends Controller {
         return $input['results'][$url]['shortUrl'];
 	}
 	
-	/** tweet
-	 * 
+	/**
+	 * Checks the a twitter account credentials passed in
+	 * Builds a tweet and includes a bit.ly shortened URL
+	 * Updates the status of the twitter account passed in
+	 * @param $twitter
+	 * @return boolean
 	 */
 	function tweet($twitter) {
-	    //build credentials
 	    $this->Twitter->username = Configure::read('accounts.'.$twitter['queue'].'.username');
 	    $this->Twitter->password = Configure::read('accounts.'.$twitter['queue'].'.password');
 	    
-	    //check credentials
 	    if(!$this->Twitter->account_verify_credentials()) {
 	        $this->Session->setFlash('A error occured with your twitter account credentials');
 	        return false;
 	    }
 	    
-        //build message
 	    $message = Configure::read('messages.'.strtolower($twitter['controller']).'.'.$twitter['action']).$this->string_slice($twitter['ticket']);
 	    if($twitter['controller'] == 'Tickets') $message .= '('.$twitter['id'].')';
 	    $message .= ' - '.$this->bitly($twitter['id']);

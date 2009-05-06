@@ -3,7 +3,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('JqueryForm');
 	
-	/** beforeFilter
+	/**
 	 * Controller beforeFilter callback.
 	 * Called before the controller action. 
 	 * 
@@ -14,14 +14,12 @@ class UsersController extends AppController {
 	    $this->Auth->allow('logout');
 	}
 	
-	/** login
-	 *
+	/**
+	 * login action which is 
 	 */
-	function login() {
-	    //Authentication Component login magic. Leave blank!
-	}
+	function login() {}
 	
-	/** logout
+	/**
 	 *
 	 */
 	function logout() {
@@ -30,7 +28,7 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());
 	}
 
-    /** index
+    /**
 	 *
 	 */
 	function index() {
@@ -38,7 +36,7 @@ class UsersController extends AppController {
 		$this->set('users', $this->paginate());
 	}
 
-    /** view
+    /**
 	 *
 	 */
 	function view($id = null) {
@@ -49,7 +47,7 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
-    /** add
+    /**
 	 *
 	 */
 	function add() {
@@ -68,7 +66,7 @@ class UsersController extends AppController {
 		$this->set(compact('tickets', 'groups'));
 	}
 
-    /** edit
+    /**
 	 *
 	 */
 	function edit($id = null) {
@@ -92,7 +90,7 @@ class UsersController extends AppController {
 		$this->set(compact('tickets','groups'));
 	}
 
-    /** delete
+    /**
      * 
      */
 	function delete($id = null) {
@@ -106,25 +104,12 @@ class UsersController extends AppController {
 		}
 	}
 	
-	/** ajax_validate
-	 *
-	 */
-	function ajax_validate() {
-	    Configure::write('debug', 0);
-	    if($this->RequestHandler->isAjax()) {
-	        $this->data['User'][$this->params['form']['field']] = $this->params['form']['value'];
-	        $this->User->set($this->data);
-	        if($this->User->validates()) {
-	            $this->autoRender = false;
-	        } else {
-	            $errorArray = $this->validateErrors($this->User);
-	            $this->set('error', $errorArray[$this->params['form']['field']]);
-	        }
-	    }
-	}
-	
-	/** home
-	 *
+	/**
+	 * The user's home page.
+	 * Checks to see if are logged in and redirects the user to the login page if not
+	 * Finds uncompleted tickets raised by the logged in user and passes them to the view
+	 * @param void
+	 * @param void
 	 */
 	function home() {
 	    if(!$this->Auth->user()) $this->redirect(array('controller'=>'users', 'action'=>'login'));
@@ -137,8 +122,10 @@ class UsersController extends AppController {
 	    $this->set(compact('tickets'));
 	}
 	
-	/** password
-	 * 
+	/**
+	 * Allows a user to change their password
+	 * @param void
+	 * @return void
 	 */
 	function password() {
 	    if(!empty($this->data)) {
@@ -146,7 +133,6 @@ class UsersController extends AppController {
     	    
     	    if($this->Auth->password($this->data['User']['old_password']) == $user['User']['password']) {
     	        if($this->data['User']['password'] == $this->data['User']['repeat_password']) {
-    	            //new_password and repeat_password are the same
     	            $this->data['User']['id'] = $this->Auth->user('id');
     	            $this->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
     	            $this->data['User']['group_id'] = $user['User']['group_id'];

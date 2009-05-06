@@ -3,7 +3,7 @@ class TicketsController extends AppController {
 	var $name = 'Tickets';
 	var $helpers = array('Time');
     
-    /** view
+    /**
      *
      */
 	function view($id = null) {
@@ -16,14 +16,15 @@ class TicketsController extends AppController {
 		$this->set(compact('ticket', 'comments', 'id'));
 	}
     
-    /** add
-     * 
+    /**
+     * Adds a ticket with the data submitted from the view form
+     * Defaults are added to the array for status and queue with the user's id set from the Auth component's session.
+     * @param void
+     * @return void
      */ 
 	function add() {
 		if (!empty($this->data)) {
 			$this->Ticket->create();
-			
-			//add default queue/status and set the user
 			$status = $this->Ticket->Status->find('first', array('conditions'=>array('Status.name'=>'pending'), 'fields'=>array('id')));
 			$queue = $this->Ticket->Queue->find('first', array('conditions'=>array('Queue.slug'=>'kingswood_BAU'), 'fields'=>array('id', 'twitter_username')));
 			$this->data['Ticket']['status_id'] = $status['Status']['id'];
@@ -40,15 +41,17 @@ class TicketsController extends AppController {
 			    $this->redirect(array('controller'=>'users', 'action'=>'home'));
 		    } else $this->Session->setFlash('The Ticket could not be saved. Please, try again');
 		}
-		//$applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>'Po%'), 'fields'=>array('name', 'id')));
         $applications = $this->Ticket->Application->find('list');
 		$priorities = $this->Ticket->Priority->find('list', array('fields'=>array('Priority.id', 'Priority.name')));
 		asort($priorities);
 		$this->set(compact('applications', 'priorities'));
 	}
     
-    /** edit
-     * 
+    /**
+     * Edits a ticket
+     * If the form is submitted without changes nothing is written to the database and twitter is not updated.
+     * @param $id
+     * @return void
      */
 	function edit($id = null) {		
 		if (!$id && empty($this->data)) {
@@ -60,8 +63,6 @@ class TicketsController extends AppController {
 		
 		if (!empty($this->data)) {
 		    $this->data['Ticket'] = $this->__parse_date_completed($this->data['Ticket'], $ticket['Ticket']);
-    	    
-		    //build array comparative to $this->data and compare
     	    if($this->__is_form_different_to_record($this->data['Ticket'], $ticket['Ticket'])) {
     			if ($this->Ticket->save($this->data)) {
     				$this->Session->setFlash('The Ticket has been saved');
@@ -88,7 +89,7 @@ class TicketsController extends AppController {
 		$this->set(compact('queues', 'releases', 'release', 'statuses'));
 	}
 	
-	/** delete
+	/**
 	 * 
 	 */
 	function delete($id = null) {
@@ -102,8 +103,10 @@ class TicketsController extends AppController {
 		}
 	}
 
-    /** complete
-     * 
+    /**
+     * Completes a ticket and sets the current date as the date it was completed
+     * @param $id
+     * @return void
      */
     function complete($id=null) {
         if(!$id) {
@@ -129,31 +132,23 @@ class TicketsController extends AppController {
         }    
     }
 
-    /** autocomplete
-     * 
-     */
-    function autocomplete() {
-        Configure::write('debug', 0);
-        $this->layout = 'ajax';
 
-        $applications = $this->Ticket->Application->find('all', array('conditions'=>array('Application.name LIKE'=>$this->params['url']['q'].'%'), 'fields'=>array('name', 'id')));
-        $this->set('applications', $applications);
-    }
     
-	/** __is_form_different_to_record
+	/**
      * private function to find the difference between the submitted form data and what is in the database
-     * 
+     * @param $form, $record
+     * @return boolean
      */
     function __is_form_different_to_record($form, $record) {
         unset($record['id'], $record['created'], $record['modified'], $record['user_id'], $record['application_id'], $record['priority_id']);
-	    //if(array_diff($form, $record) || array_diff($record, $form)) return true;
 	    if(!Set::isEqual($form, $record)) return true;
 	    return false;
     }
     
-    /** __parse_date_completed
+    /**
      * This function replaces a boolean true with a date and a false with a null
-     * @return an array formatted in the style of $this->data with the correct fields ready to save to the database
+     * @param $form, $record
+     * @return $form
      */
     function __parse_date_completed($form, $record) {
         if(!$form['date_completed'] || (!$form['date_completed'] && $record['date_completed'])) {
