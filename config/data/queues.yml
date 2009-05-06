@@ -1,18 +1,24 @@
 -
+  id: '2'
+  name: 'Cardiff BAU'
+  slug: cardiff_BAU
+  is_first_line: '0'
+  created: '2009-04-28 12:15:40'
+  modified: '2009-04-28 12:15:40'
+  twitter_username: cardiffBAU
+-
   id: '1'
   name: 'Kingswood BAU'
   slug: kingswood_BAU
   is_first_line: '1'
-  twitter_username: 'kingswoodBAU'
--
-  id: '2'
-  name: Cardiff BAU
-  slug: cardiff_BAU
-  is_first_line: '0'
-  twitter_username: 'cardiffBAU'
+  created: '2009-04-28 12:15:40'
+  modified: '2009-04-28 12:15:40'
+  twitter_username: kingswoodBAU
 -
   id: '3'
   name: Rhythmyx
   slug: rhythmyx
   is_first_line: '0'
+  created: '2009-04-28 12:15:40'
+  modified: '2009-04-28 12:15:40'
   twitter_username: rhythmyx

@@ -1,35 +1,35 @@
 -
-  id: '1'
-  name: 'Administrators'
-  slug: administrators
-  queue_id: 
+  id: '3'
+  name: 'Cardiff BAU'
+  slug: cardiffBAU
+  queue_id: '2'
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '2'
   name: 'Kingswood BAU'
-  slug: kingswood BAU
-  queue_id: 1
+  slug: 'kingswood BAU'
+  queue_id: '1'
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
-  id: '3'
-  name: 'Cardiff BAU'
-  slug: cardiffBAU
-  queue_id: 2
+  id: '1'
+  name: Administrators
+  slug: administrators
+  queue_id: null
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '4'
-  name: 'Rhythmyx'
+  name: Rhythmyx
   slug: rhythmyx
-  queue_id: 3
+  queue_id: '3'
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
 -
   id: '5'
-  name: 'Business'
+  name: Business
   slug: business
-  queue_id:
+  queue_id: null
   created: '2009-02-19 16:36:08'
   modified: '2009-02-19 16:36:08'
