@@ -1,2 +1,5 @@
 /tmp
 .DS_Store
+.project
+.settings
+.cache/
