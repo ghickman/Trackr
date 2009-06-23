@@ -12,6 +12,6 @@ cake populate
 # build ACO tree
 cake acl_extras aco_update
 
-curl http://localhost/~madnashua/tellann/acl_setup/administrators_build
-curl http://localhost/~madnashua/tellann/acl_setup/support_build
-curl http://localhost/~madnashua/tellann/acl_setup/business_build
+curl http://localhost/~ghickman/trackr/acl_setup/administrators_build
+curl http://localhost/~ghickman/trackr/acl_setup/support_build
+curl http://localhost/~ghickman/trackr/acl_setup/business_build
